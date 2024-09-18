@@ -6,6 +6,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { MovieRecommendationsComponent } from './movie-management/movie-recommendations/movie-recommendations.component';
 import { MovieInfoModule } from './movie-info/movie-info.module';
 import { MovieManagementModule } from './movie-management/movie-management.module';
+import { MaterialModule } from './infrastructure/infrastructure.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MovieManagementModule } from './movie-management/movie-management.modul
     AppRoutingModule,
     HttpClientModule,
     MovieInfoModule,
-    MovieManagementModule
+    MovieManagementModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
