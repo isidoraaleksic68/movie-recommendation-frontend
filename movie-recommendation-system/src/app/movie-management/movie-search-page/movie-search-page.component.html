@@ -1,17 +1,17 @@
-
-    <body>
+<body>
     <div class="search-container">
         <h1 class="search-title">Find similar movies to your favorite</h1>
         <div class="search-bar">
             <input type="text" placeholder="Search for a movie" />
-                <mat-icon class="search-icon">search</mat-icon>
+            <mat-icon class="search-icon">search</mat-icon>
         </div>
     </div>
 
+    
+    <h2 class="top-rated-title">🔥 Top Rated Movies </h2>
     <div class="movies-container">
-        <h2 class="top-rated-title">🔥 Top Rated Movies</h2>
-            <div *ngFor="let movie of movies" class="movie-card">
-            <img [src]="movie.id" alt="{{movie.title}}" class="movie-poster" />
-            </div>
+        <div *ngFor="let movie of movies" class="movie-card">
+            <img src="https://via.placeholder.com/385x421" alt="{{ movie.title }}" class="movie-poster" />
+        </div>
     </div>
 </body>
