@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MovieDetailsPageComponent } from './movie-details-page/movie-details-page.component';
 import { MediaAndTrailersViewComponent } from './media-and-trailers-view/media-and-trailers-view.component';
-import { MoreLikeThisViewComponent } from './more-like-this-view/more-like-this-view.component';
 import { MovieManagementModule } from '../movie-management/movie-management.module';
 
 
@@ -10,8 +9,7 @@ import { MovieManagementModule } from '../movie-management/movie-management.modu
 @NgModule({
   declarations: [
     MovieDetailsPageComponent,
-    MediaAndTrailersViewComponent,
-    MoreLikeThisViewComponent
+    MediaAndTrailersViewComponent
   ],
   imports: [
     CommonModule
@@ -19,7 +17,6 @@ import { MovieManagementModule } from '../movie-management/movie-management.modu
   ],
   exports: [
     MediaAndTrailersViewComponent,
-    MoreLikeThisViewComponent,
     MovieDetailsPageComponent
   ]
 })

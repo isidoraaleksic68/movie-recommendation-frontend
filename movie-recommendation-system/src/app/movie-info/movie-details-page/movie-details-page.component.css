@@ -1,0 +1,144 @@
+/* Body Styling */
+body {
+    background-color: #5d18a2;
+    min-height: 100vh; /* Ensures the body takes full height */
+    margin: 0;
+    padding: 10% 0; /* Symmetrical padding for top and bottom */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centers the main container */
+}
+
+/* Movie Details Container */
+.movie-details-container {
+    padding: 5% 3%; /* Consistent padding for all sides */
+    margin: 0 auto; /* Centers container horizontally */
+    max-width: 1200px; /* Limits width to prevent stretching on larger screens */
+    border-radius: 20px;
+    background-color: #4F1787;
+    color: #FFF;
+    display: flex;
+    flex-direction: row; /* Changed to row for side-by-side layout */
+    justify-content: space-between; /* Ensures space between the poster and details */
+    align-items: flex-start; /* Align the top of the image and details */
+}
+
+/* Movie Poster Styling */
+.movie-poster {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    margin-right: 20px;
+    max-height: 400px;
+}
+
+/* Movie Title Section */
+.movie-title-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%; /* Take full width of the remaining space */
+}
+
+.movie-title {
+    font-family: "Playfair Display", serif;
+    font-size: 40px;
+    font-weight: 700;
+    margin: 0 0 10px 0; /* Added bottom margin for spacing */
+}
+
+.movie-details {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    width: 100%; /* Take full width */
+    text-align: left; /* Align text to the left */
+}
+
+.release-year-duration, .movie-rating {
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+/* Keywords Grid Layout */
+.keywords-container {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr); /* Two keywords per row */
+    width: 100%; /* Make sure the grid takes full width */
+    margin: 20px 0; /* Add margin for spacing */
+}
+
+.keyword {
+    width: 100%;
+    height: 45px;
+    border-radius: 20px;
+    background: rgba(30, 30, 30, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFF;
+}
+
+/* Overview Section */
+.overview-container {
+    border-radius: 20px;
+    background: rgba(30, 30, 30, 0.23);
+    padding: 2% 5%; /* Consistent padding */
+    margin: 20px 0;
+    text-align: left; /* Align overview text to the left */
+}
+
+.overview {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+/* More Like This Button */
+.more-like-this {
+    height: 50px; /* Reduced height for a more compact look */
+    width: 100%;
+    border-radius: 20px;
+    background: rgba(30, 30, 30, 0.33);
+    color: #FFF;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+    font-weight: 400;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.more-like-this:hover {
+    background-color: rgba(30, 30, 30, 0.5); /* Slightly darker on hover */
+}
+
+/* Media and Trailers Container */
+#media-and-trailers-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* Responsive Layout for Smaller Screens */
+@media (max-width: 768px) {
+    .movie-details-container {
+        flex-direction: column; /* Stack poster and details vertically */
+        align-items: center; /* Center everything */
+    }
+
+    .movie-poster {
+        margin-bottom: 20px;
+    }
+
+    .more-like-this {
+        width: 100%;
+    }
+}
