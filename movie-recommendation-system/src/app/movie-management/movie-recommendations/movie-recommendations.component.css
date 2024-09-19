@@ -1,10 +1,11 @@
 /* Background */
+
 body {
     background-color: #341D47; /* Combination of #4F1787 and #1E1E1E3D */
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    height: auto;
+    height: 100%;
   }
   
   /* Container for the entire page */
@@ -61,6 +62,8 @@ body {
     gap: 30px;
     margin-top: 40px;
     width: 100%;
+    height: auto;
+    min-height: 100%;
   }
   
   /* Adjust grid for larger screens */
