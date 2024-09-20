@@ -4,33 +4,35 @@
         <img src="https://via.placeholder.com/385x421" alt="Movie Poster" class="movie-poster" />
 
         <!-- Movie Details on the right -->
-        <div class="movie-title-container">
-            <h1 class="movie-title">{{ movie?.title }}</h1>
-            <div class="movie-details">
-                <span class="release-year-duration">{{ movie?.release_date }} - {{ movie?.runtime }}</span>
-                <span class="movie-rating">{{ movie?.vote_average }}/10</span>
+        <div class="movie-info-container">
+            <div class="movie-title-container">
+                <h1 class="movie-title">{{ movie?.title }}</h1>
+                <div class="movie-details">
+                    <span class="release-year-duration">{{ movie?.release_date }} - {{ movie?.runtime }}</span>
+                    <span class="movie-rating">{{ movie?.vote_average }}/10</span>
+                </div>
+
+                <!-- Keywords -->
+                <div class="keywords-container">
+                    <div class="keyword">Action</div>
+                    <div class="keyword">Adventure</div>
+                    <div class="keyword">Drama</div>
+                    <div class="keyword">Action</div>
+                    <div class="keyword">Adventure</div>
+                    <div class="keyword">Drama</div>
+                </div>
+
+                <!-- Overview -->
+                <div class="overview-container">
+                    <p class="overview">{{ movie?.overview }}</p>
+                </div>
             </div>
-
-            <!-- Keywords -->
-            <div class="keywords-container">
-                <div class="keyword">Action</div>
-                <div class="keyword">Adventure</div>
-                <div class="keyword">Drama</div>
-                <div class="keyword">Action</div>
-                <div class="keyword">Adventure</div>
-                <div class="keyword">Drama</div>
-            </div>
-
-            <!-- Overview -->
-            <div class="overview-container">
-                <p class="overview">{{ movie?.overview }}</p>
-            </div>
-
-            <!-- More Like This Button -->
-            <button class="more-like-this">More like this</button>
-
-            <!-- Media and Trailers -->
-            <app-media-and-trailers-view id="media-and-trailers-container"></app-media-and-trailers-view>
         </div>
+    </div>
+
+    <!-- More Like This Button and Media/Trailers (Centered) -->
+    <div class="center-container">
+        <button class="more-like-this">More like this</button>
+        <app-media-and-trailers-view id="media-and-trailers-container"></app-media-and-trailers-view>
     </div>
 </body>
