@@ -200,7 +200,6 @@ export class MovieRecommendationsComponent {
   }
 
   goToDetails(movieId: number): void {
-    console.log("wtf")
     this.movieService.getMovieDetails(movieId).subscribe(
       (movie: Movie) => {
         this.movieService.setMovie(movie); // Set movie in the service

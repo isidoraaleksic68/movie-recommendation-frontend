@@ -1,1 +1,37 @@
-<p>movie-filtering-page works!</p>
+<body>
+    <div class="page-container">
+      <!-- Header Section -->
+      <div class="header">
+        <div class="button-container">
+            <select class="dropdown">
+                <option value="">Select genre</option>
+                <option value="Action">Action</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Drama">Drama</option>
+              </select>
+      
+              <!-- Dropdown for Spoken Language Selection -->
+              <select class="dropdown">
+                <option value="">Select spoken language</option>
+                <option value="English">English</option>
+                <option value="Spanish">Spanish</option>
+                <option value="French">French</option>
+                <option value="German">German</option>
+              </select>
+        </div>
+        
+        <div class="dropdown-container">
+            <button class="button" (click)="filterResults()">Filter Results</button>
+        </div>
+      </div>
+  
+      <!-- Movie Cards Section -->
+      <div class="movie-grid">
+        <div *ngFor="let movie of movies" class="movie-card" (click)="goToDetails(movie.id)">
+          <img src="https://via.placeholder.com/385x421" alt="{{movie.title}}" />
+        </div>
+      </div>
+    </div>
+  </body>
+  
