@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Movie } from 'src/app/model';
 import { MovieService } from '../movie.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-recommendations',
@@ -10,7 +11,7 @@ import { MovieService } from '../movie.service';
 export class MovieRecommendationsComponent {
   movies: Movie[] = [];
 
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService, private router:Router) { }
 
   private fallbackMovies: Movie[] = [
     {
@@ -167,4 +168,51 @@ export class MovieRecommendationsComponent {
     );
   }
   
+  private movie: Movie={
+    budget: 100000000,
+      genres: [{ id: 28, name: 'Action' }, { id: 12, name: 'Adventure' }],
+      homepage: 'http://example.com',
+      id: 1,
+      keywords: [{ id: 1, name: 'example' }],
+      original_language: 'en',
+      original_title: 'Fallback Movie 1',
+      overview: 'This is a fallback movie.',
+      popularity: 10,
+      production_companies: [{ id: 1, name: 'Example Production' }],
+      production_countries: [{ iso_3166_1: 'US', name: 'United States' }],
+      release_date: '2024-01-01',
+      revenue: 5000000,
+      runtime: 120,
+      spoken_languages: [{ iso_639_1: 'en', name: 'English' }],
+      status: 'Released',
+      tagline: 'An example fallback movie.',
+      title: 'Fallback Movie 1',
+      vote_average: 7.0,
+      vote_count: 1000
+  };
+  
+  goToSorting() {
+    this.router.navigate([`home/movies/sorting/`, 1]);
+  }
+
+  goToFiltering() {
+    this.router.navigate([`home/movies/filtering/`, 1]);
+  }
+
+  goToDetails(movieId: number): void {
+    console.log("wtf")
+    this.movieService.getMovieDetails(movieId).subscribe(
+      (movie: Movie) => {
+        this.movieService.setMovie(movie); // Set movie in the service
+        this.router.navigate([`home/movies/`, movieId]);
+      },
+      (error) => {
+        console.error('Error fetching movie details:', error);
+        //kada dodam bekend treba obrisati ove naredne dve linije
+        this.movieService.setMovie(this.movie);
+        console.log("here")
+        this.router.navigate([`home/movies/`, movieId]); // Navigate anyway
+      }
+    );
+}
 }

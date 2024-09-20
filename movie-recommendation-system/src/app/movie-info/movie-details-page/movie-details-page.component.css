@@ -1,0 +1,162 @@
+/* Body Styling */
+body {
+    background-color: #5d18a2;
+    min-height: 100vh;
+    margin: 0;
+    padding: 5% 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Movie Details Container */
+.movie-details-container {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+    padding: 5% 3%;
+    background-color: #4F1787;
+    border-radius: 20px 20px 0 0 ;
+    color: #FFF;
+    align-items: flex-start; /* Aligns poster and movie info side-by-side */
+    justify-content: center;
+    /* margin-bottom: 40px; Adds spacing before the centered button and trailers */
+}
+
+/* Movie Poster Styling */
+.movie-poster {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    margin-right: 40px;
+    max-height: 400px;
+}
+
+/* Movie Info Section */
+.movie-info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.movie-title {
+    font-family: "Playfair Display", serif;
+    font-size: 40px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+}
+
+.movie-details {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    width: 100%;
+    text-align: left;
+}
+
+.release-year-duration, .movie-rating {
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+/* Keywords Grid Layout */
+.keywords-container {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    margin: 20px 0;
+}
+
+.keyword {
+    width: 100%;
+    height: 45px;
+    border-radius: 20px;
+    background: rgba(30, 30, 30, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFF;
+}
+
+/* Overview Section */
+.overview-container {
+    border-radius: 20px;
+    background: rgba(30, 30, 30, 0.23);
+    padding: 2% 5%;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.overview {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+/* Centered Button and Media/Trailers */
+.center-container {
+    /* padding-top: 5%;
+    background-color: #4F1787;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; Center the button and media horizontally */
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+    padding: 5% 3%;
+    background-color: #4F1787;
+    border-radius:  0 0 20px 20px;
+    color: #FFF;
+    align-items: center; /* Aligns poster and movie info side-by-side */
+    /* justify-content: center; */
+    flex-direction: column;
+}
+
+/* More Like This Button */
+.more-like-this {
+    height: 100px;
+    width: 80%;
+    border-radius: 20px;
+    background: rgba(30, 30, 30, 0.33);
+    color: #FFF;
+    border: none;
+    cursor: pointer;
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+    font-weight: 400;
+    transition: background-color 0.3s ease;
+}
+
+.more-like-this:hover {
+    background-color: rgba(30, 30, 30, 0.5);
+}
+
+/* Media and Trailers Container */
+#media-and-trailers-container {
+    width: 80%;
+    display: flex;
+    justify-content: center; /* Centers the media and trailers */
+    /* margin-top: 5%; */
+}
+
+/* Responsive Layout for Smaller Screens */
+@media (max-width: 768px) {
+    .movie-details-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .movie-poster {
+        margin-bottom: 20px;
+    }
+
+    .more-like-this {
+        width: 100%;
+    }
+}
