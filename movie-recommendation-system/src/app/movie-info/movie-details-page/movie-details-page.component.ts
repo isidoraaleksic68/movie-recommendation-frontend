@@ -21,5 +21,9 @@ export class MovieDetailsPageComponent implements OnInit{
     });
   }
 
+  viewRecommendations() {
+    this.router.navigate([`home/movies/recommendations/`, this.movie?.id]);
+  }
+
   
 }

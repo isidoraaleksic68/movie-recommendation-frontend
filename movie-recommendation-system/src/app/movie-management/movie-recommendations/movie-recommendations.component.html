@@ -4,17 +4,17 @@
     <div class="header">
       <h1 class="header-title">Movies similar to Titanic</h1>
       <div class="button-container">
-        <button class="button">Filter Results</button>
-        <button class="button">Sort Results</button>
+        <button class="button" (click)="goToFiltering()">Filter Results</button>
+        <button class="button" (click)="goToSorting()">Sort Results</button>
       </div>
     </div>
 
     <!-- Movie Cards Section -->
     <div class="movie-grid">
-      <div *ngFor="let movie of movies" class="movie-card">
-        <img src="https://via.placeholder.com/385x421" alt="{{movie.title}}" class="movie-poster" />
-        </div>
-      <!-- Add more movie cards as needed -->
+      <div *ngFor="let movie of movies" class="movie-card" (click)="goToDetails(movie.id)">
+        <img src="https://via.placeholder.com/385x421" alt="{{movie.title}}" />
+      </div>
     </div>
+    
   </div>
 </body>
