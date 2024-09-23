@@ -1,1 +1,29 @@
-<p>movie-sorting-page works!</p>
+<body>
+    <div class="page-container">
+        <!-- Header Section -->
+        <div class="header">
+            <!-- Sorting Container -->
+            <div class="sorting-container">
+                <div class="sort-title">Sort by</div>
+                <div class="checkbox-container">
+                    <mat-checkbox #checkbox value="Vote" class="example-margin">Popularity</mat-checkbox>
+                    <mat-checkbox #checkbox value="Vote" class="example-margin">Release date</mat-checkbox>
+                    <mat-checkbox #checkbox value="Vote" class="example-margin">Revenue</mat-checkbox>
+                    <mat-checkbox #checkbox value="Vote" class="example-margin">Runtime</mat-checkbox>
+                    <mat-checkbox #checkbox value="Vote" class="example-margin">Vote avarage</mat-checkbox>
+                    <mat-checkbox #checkbox value="Vote" class="example-margin">Vote count</mat-checkbox>
+                </div>
+            </div>
+            <div class="dropdown-container">
+                <button class="button" (click)="sortResults()">sort results</button>
+            </div>
+        </div>
+
+        <!-- Movie Cards Section -->
+        <div class="movie-grid">
+            <div *ngFor="let movie of movies" class="movie-card" (click)="goToDetails(movie.id)">
+                <img src="https://via.placeholder.com/385x421" alt="{{movie.title}}" />
+            </div>
+        </div>
+    </div>
+</body>

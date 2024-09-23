@@ -1,0 +1,149 @@
+/* Background */
+body {
+    background-color: #341D47; /* Combination of #4F1787 and #1E1E1E3D */
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* Container for the entire page */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Header Section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0;
+}
+
+/* Sorting Container */
+.sorting-container {
+    width: 683.233px;
+    height: 178px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: var(--cards, #FFDFD6);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Sort by title */
+.sort-title {
+    display: flex;
+    width: 169.99px;
+    height: 10px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #000;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 100%; /* 20px */
+    margin-bottom: 20px; /* Space below title */
+}
+
+/* Checkboxes container */
+.checkbox-container {
+    display: grid;
+    align-items: center;
+    padding-top: 5%;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    flex-wrap: wrap;
+    gap: 20px; /* Space between the checkboxes */
+}
+
+/* Individual checkbox label styling */
+.example-margin {
+    display: flex;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 200;
+    color: #000;
+    cursor: pointer;
+}
+
+/* Button Styles */
+.button-container {
+    display: flex;
+    gap: 20px; /* Space between buttons */
+}
+
+.button {
+    width: 278px;
+    height: 89.979px;
+    background-color: #FFDFD6;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #FFBFB5;
+}
+
+/* Movie Cards */
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+}
+
+/* Adjust grid for larger screens */
+@media (min-width: 1200px) {
+    .movie-grid {
+        grid-template-columns: repeat(4, 1fr); /* 4 movies per row */
+    }
+}
+
+/* Adjust grid for medium screens */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .movie-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 movies per row */
+    }
+}
+
+/* Adjust grid for smaller screens */
+@media (max-width: 767px) {
+    .movie-grid {
+        grid-template-columns: repeat(1, 1fr); /* 1 movie per row (column layout) */
+    }
+}
+
+.movie-card {
+    width: 100%;
+    max-width: 385.534px;
+    height: 421.077px;
+    background: rgba(255, 223, 214, 0.88);
+    border-radius: 30px 30px 30px 0px;
+    transform: rotate(-0.252deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.movie-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 30px 30px 30px 0px;
+}
