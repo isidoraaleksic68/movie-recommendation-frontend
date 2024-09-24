@@ -87,7 +87,6 @@ body {
     border-radius: 20px;
     background: rgba(30, 30, 30, 0.23);
     padding: 2% 5%;
-    margin: 20px 0;
     text-align: left;
 }
 
@@ -100,12 +99,7 @@ body {
 
 /* Centered Button and Media/Trailers */
 .center-container {
-    /* padding-top: 5%;
-    background-color: #4F1787;
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: center; Center the button and media horizontally */
+    justify-content: center;
     display: flex;
     max-width: 1200px;
     width: 100%;

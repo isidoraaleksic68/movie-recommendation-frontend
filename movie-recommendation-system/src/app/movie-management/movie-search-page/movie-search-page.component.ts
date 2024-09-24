@@ -66,15 +66,9 @@ export class MovieSearchPageComponent {
     });
   }
 
-  goToDetails(movieId: number): void {
-    this.movieService.getMovieDetails(movieId).subscribe(
-      (movie: Movie) => {
-        this.movieService.setMovie(movie); // Set movie in the service
-        this.router.navigate([`home/movies/`, movieId]);
-      },
-      (error) => {
-        console.error('Error fetching movie details:', error);
-      }
-    );
+  goToDetails(movieId: number): void { 
+  
+    this.router.navigate([`home/movies/`, movieId]);
+  
   }
 }

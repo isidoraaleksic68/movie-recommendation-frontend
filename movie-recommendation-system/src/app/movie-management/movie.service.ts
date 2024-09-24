@@ -27,9 +27,5 @@ export class MovieService {
   searchMovies(query: string, page : number = 1): Observable<any> {
     return this.http.post(`${this.apiUrl}/movies/search?page=${page}`, { query });
   }
-
-  setMovie(movie: Movie): void {
-    this.movieSubject.next(movie);
-  }
-
+  
 }

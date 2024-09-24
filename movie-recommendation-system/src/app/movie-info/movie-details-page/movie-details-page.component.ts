@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/model';
 import { MovieService } from 'src/app/movie-management/movie.service';
 
@@ -9,21 +9,41 @@ import { MovieService } from 'src/app/movie-management/movie.service';
   styleUrls: ['./movie-details-page.component.css']
 })
 export class MovieDetailsPageComponent implements OnInit{
+  movie: Movie | undefined;
 
-  movie: Movie | null = null;
-
-  constructor(private router: Router, private movieService: MovieService) {}
+  constructor(private movieService: MovieService, private route: ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
-    this.movieService.currentMovie.subscribe(movie => {
-      this.movie = movie;
-      console.log('Movie from service:', this.movie);
-    });
+    const movieId = Number(this.route.snapshot.paramMap.get('id'));
+    this.fetchMovieDetails(movieId);
   }
 
-  viewRecommendations() {
-    this.router.navigate([`home/movies/recommendations/`, this.movie?.id]);
+  fetchMovieDetails(movieId: number): void {
+    this.movieService.getMovieDetails(movieId).subscribe(
+      (data) => {
+        this.movie = data;
+        console.log('Movie details:', this.movie);
+      },
+      (error) => {
+        console.error('Error fetching movie details:', error);
+      }
+    );
   }
+
+  getReleaseYear(releaseDate: string | undefined): string {
+    return releaseDate ? new Date(releaseDate).getFullYear().toString() : '';
+  }
+
+  getFormattedRuntime(runtime: number| undefined): string {
+    const hours = Math.floor(runtime as number / 60);
+    const minutes = runtime as number % 60;
+    return `${hours}h ${minutes}m`;
+  }
+  
+  viewRecommendations() {
+    this.router.navigate([`home/movies/recommendations/`,this.movie?.id]);
+  }
+
 
   
 }

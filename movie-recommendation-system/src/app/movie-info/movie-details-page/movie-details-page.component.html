@@ -8,18 +8,15 @@
             <div class="movie-title-container">
                 <h1 class="movie-title">{{ movie?.title }}</h1>
                 <div class="movie-details">
-                    <span class="release-year-duration">{{ movie?.release_date }} - {{ movie?.runtime }}</span>
+                    <span class="release-year-duration">
+                        {{ getReleaseYear(movie?.release_date) }} - {{ getFormattedRuntime(movie?.runtime) }}
+                      </span>
                     <span class="movie-rating">{{ movie?.vote_average }}/10</span>
                 </div>
 
                 <!-- Keywords -->
                 <div class="keywords-container">
-                    <div class="keyword">Action</div>
-                    <div class="keyword">Adventure</div>
-                    <div class="keyword">Drama</div>
-                    <div class="keyword">Action</div>
-                    <div class="keyword">Adventure</div>
-                    <div class="keyword">Drama</div>
+                    <div class="keyword" *ngFor="let keyword of movie?.keywords">{{keyword.name}}</div>
                 </div>
 
                 <!-- Overview -->
