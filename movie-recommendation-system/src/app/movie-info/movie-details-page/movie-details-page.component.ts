@@ -11,7 +11,7 @@ import { MovieService } from 'src/app/movie-management/movie.service';
 export class MovieDetailsPageComponent implements OnInit{
   movie: Movie | undefined;
 
-  constructor(private movieService: MovieService, private route: ActivatedRoute) { }
+  constructor(private movieService: MovieService, private route: ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
     const movieId = Number(this.route.snapshot.paramMap.get('id'));
@@ -41,7 +41,7 @@ export class MovieDetailsPageComponent implements OnInit{
   }
   
   viewRecommendations() {
-    
+    this.router.navigate([`home/movies/recommendations/`,this.movie?.id]);
   }
 
 
