@@ -27,5 +27,11 @@ export class MovieService {
   searchMovies(query: string, page : number = 1): Observable<any> {
     return this.http.post(`${this.apiUrl}/movies/search?page=${page}`, { query });
   }
+
+  getRecommendedMovies(movieTitle: string, page : number = 1): Observable<any> {
+    console.log(movieTitle);
+    console.log(page);
+    return this.http.post(`${this.apiUrl}/movies/recommend?page=${page}`, { movieTitle });
+  }
   
 }
