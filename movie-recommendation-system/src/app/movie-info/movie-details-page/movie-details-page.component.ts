@@ -30,6 +30,15 @@ export class MovieDetailsPageComponent implements OnInit{
     );
   }
 
+  getReleaseYear(releaseDate: string | undefined): string {
+    return releaseDate ? new Date(releaseDate).getFullYear().toString() : '';
+  }
+
+  getFormattedRuntime(runtime: number| undefined): string {
+    const hours = Math.floor(runtime as number / 60);
+    const minutes = runtime as number % 60;
+    return `${hours}h ${minutes}m`;
+  }
   
   viewRecommendations() {
     
