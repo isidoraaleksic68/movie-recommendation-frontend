@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Movie } from 'src/app/model';
 import { MovieService } from '../movie.service';
 import { Router } from '@angular/router';
+import { count } from 'rxjs';
 
 @Component({
   selector: 'app-movie-search-page',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 export class MovieSearchPageComponent {
   movies: Movie[] = [];
   searchQuery: string = '';
+  isSearched: boolean = false;
   currentPage: number = 1; // Track the current page
 
   constructor(private movieService: MovieService, private router: Router) { }
@@ -31,16 +33,36 @@ export class MovieSearchPageComponent {
     );
   }
 
-  // Load the next page of movies
   loadNextPage(): void {
     this.currentPage++;
-    this.fetchTopRatedMovies();
+    if(this.isSearched){
+      this.searchMovies();
+    }
+    else{
+      this.fetchTopRatedMovies();
+    }
+  }
+
+  loadPreviousPage(): void {
+    this.currentPage--;
+    if(this.currentPage==0){
+      return;
+    }
+    if(this.isSearched){
+      this.searchMovies();
+    }
+    else{
+      this.fetchTopRatedMovies();
+    }
   }
 
   searchMovies(): void {
-    this.movieService.searchMovies(this.searchQuery).subscribe((response: any) => {
+    this.isSearched = true;
+    this.movieService.searchMovies(this.searchQuery, this.currentPage).subscribe((response: any) => {
       console.log("RESPONSE", response);
-      this.movies = response;
+      this.movies = response['searching results']; // Accessing the correct property
+    }, (error) => {
+      console.error('Failed to search movies.', error);
     });
   }
 

@@ -17,7 +17,7 @@ export class MovieDetailsPageComponent implements OnInit{
   ngOnInit(): void {
     this.movieService.currentMovie.subscribe(movie => {
       this.movie = movie;
-      console.log('Movie from service:', this.movie); // Check movie from service
+      console.log('Movie from service:', this.movie);
     });
   }
 

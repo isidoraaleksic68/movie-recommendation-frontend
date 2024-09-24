@@ -12,15 +12,19 @@
 
   <h2 class="top-rated-title">🔥 Top Rated Movies </h2>
   
-  <!-- Movies Container - to display search results -->
   <div class="movies-container" *ngIf="movies && movies.length > 0">
     <div *ngFor="let movie of movies" class="movie-card" (click)="goToDetails(movie.id)">
-      <img src="https://via.placeholder.com/385x421" alt="{{movie.title}}" />
+      <img src="" alt="{{movie.title}}" />
     </div>
   </div>
 
   <div class="button-container">
-    <button class="load_more_button" (click)="loadNextPage()">load more</button>
+    <button mat-fab class="load_more_button" (click)="loadPreviousPage()">
+      <mat-icon>navigate_before</mat-icon>
+    </button>
+    <button mat-fab class="load_more_button" (click)="loadNextPage()">
+      <mat-icon>navigate_next</mat-icon>
+    </button>
   </div>
-  
+
 </body>

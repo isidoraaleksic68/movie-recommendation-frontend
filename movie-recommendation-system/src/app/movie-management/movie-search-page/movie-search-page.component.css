@@ -170,14 +170,13 @@ body {
     display: flex;
     margin-top: 5%;
     margin-bottom: 5%;
+    gap:20px;
 }
 
 .load_more_button{
-    width: 278px;
-    height: 89.979px;
     background-color: #FFDFD6;
     border: none;
-    border-radius: 10px;
+    border-radius: 0;
     font-family: 'Inter', sans-serif;
     font-size: 18px;
     font-weight: 700;
