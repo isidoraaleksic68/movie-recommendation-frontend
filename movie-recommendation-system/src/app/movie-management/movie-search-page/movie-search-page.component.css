@@ -163,3 +163,22 @@ body {
         grid-template-columns: repeat(1, 1fr); /* 1 movie per row */
     }
 }
+
+.button-container{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    gap:20px;
+}
+
+.load_more_button{
+    background-color: #FFDFD6;
+    border: none;
+    border-radius: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}

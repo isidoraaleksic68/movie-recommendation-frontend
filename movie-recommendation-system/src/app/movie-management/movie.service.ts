@@ -9,23 +9,23 @@ import { Movie } from '../model';
 
 export class MovieService {
 
-  private apiUrl = 'http://localhost:8080'; // Replace with your backend URL
+  private apiUrl = 'http://localhost:5000';
   
   private movieSubject = new BehaviorSubject<Movie | null>(null);
   currentMovie = this.movieSubject.asObservable();
 
   constructor(private http: HttpClient) { }
 
-  getTopRatedMovies(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/movies/topRated`);
+  getTopRatedMovies(page: number = 1): Observable<Movie[]> {
+    return this.http.get<Movie[]>(`${this.apiUrl}/movies/topRated?page=${page}`);
   }
 
   getMovieDetails(movieId: number): Observable<any> {
     return this.http.get<any[]>(`${this.apiUrl}/movies/${movieId}`);
   }
 
-  searchMovies(query: string): Observable<any> {
-    return this.http.get<any[]>(`${this.apiUrl}/movies/search?title=${query}`);
+  searchMovies(query: string, page : number = 1): Observable<any> {
+    return this.http.post(`${this.apiUrl}/movies/search?page=${page}`, { query });
   }
 
   setMovie(movie: Movie): void {
