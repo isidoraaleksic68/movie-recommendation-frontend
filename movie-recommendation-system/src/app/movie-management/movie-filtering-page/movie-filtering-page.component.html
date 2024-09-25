@@ -4,7 +4,7 @@
       <div class="header">
         <div class="button-container">
             <!-- Dropdown for Genre Selection -->
-              <select class="dropdown">
+              <select class="dropdown" [(ngModel)]="selectedGenre">
                 <option value="" hidden>Select genre</option>
                 <option value="Action">Action</option>
                 <option value="Adventure">Adventure</option>
@@ -13,7 +13,7 @@
               </select>
 
               <!-- Dropdown for Spoken Language Selection -->
-              <select class="dropdown">
+              <select class="dropdown" [(ngModel)]="selectedLanguage">
                 <option value="" hidden>Select spoken language</option>
                 <option value="English">English</option>
                 <option value="Spanish">Spanish</option>
