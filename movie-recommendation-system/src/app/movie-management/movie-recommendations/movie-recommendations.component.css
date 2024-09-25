@@ -5,7 +5,7 @@ body {
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    height: 100%;
+    height: auto;
   }
   
   /* Container for the entire page */
@@ -22,6 +22,7 @@ body {
     justify-content: space-between;
     width: 100%;
     padding: 20px 0;
+    align-items: center;
   }
   
   .header-title {
@@ -107,3 +108,23 @@ body {
     border-radius: 30px 30px 30px 0px;
   }
   
+  
+.button-container{
+  background-color: #341D47; 
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin-top: 5%;
+  padding-bottom: 5%;
+  gap:20px;
+}
+
+.load_more_button{
+  background-color: #FFDFD6;
+  border: none;
+  border-radius: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}

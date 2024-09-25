@@ -35,15 +35,30 @@ export class MovieRecommendationsComponent implements OnInit{
   }
 
   fetchMovies(): void {
-    this.movieService.getRecommendedMovies(this.movie?.title as string,this.currentPage).subscribe(
-      (data: Movie[]) => {
-        this.movies = data;
+    this.movieService.getRecommendedMovies(this.movie?.title as string, this.currentPage).subscribe(
+      (movies: Movie[]) => {
+        this.movies = movies;
       },
       (error) => {
         console.error('Failed to fetch recommended movies.', error);
       }
     );
   }
+  
+  
+  loadNextPage(): void {
+    this.currentPage++;
+    this.fetchMovies();
+  }
+
+  loadPreviousPage(): void {
+    this.currentPage--;
+    if(this.currentPage==0){
+      return;
+    }
+    this.fetchMovies();
+  }
+  
 
   
   goToSorting() {
