@@ -20,6 +20,7 @@ body {
   .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     padding: 20px 0;
   }
@@ -31,7 +32,7 @@ body {
   
   .button {
     width: 278px;
-    height: 89.979px;
+    height: 70px;
     background-color: #FFDFD6;
     border: none;
     border-radius: 10px;
@@ -110,7 +111,8 @@ body {
     padding: 10px;
     font-size: 16px;
     border-radius: 5px;
-    width: 300px;
+    width: 278px;
+    height: 70px;
     border: 1px solid #ccc;
     background-color: #FFDFD6;
     font-family: 'Inter', sans-serif;
@@ -124,3 +126,22 @@ body {
     background-color: #FFBFB5;
   }
   
+  .button-container-pagination{
+    background-color: #341D47; 
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 5%;
+    padding-bottom: 5%;
+    gap:20px;
+  }
+  
+  .load_more_button{
+    background-color: #FFDFD6;
+    border: none;
+    border-radius: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+  }
