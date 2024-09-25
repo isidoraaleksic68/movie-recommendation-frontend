@@ -2,7 +2,7 @@
   <div class="page-container">
     <!-- Header Section -->
     <div class="header">
-      <h1 class="header-title">Movies similar to Titanic</h1>
+      <h1 class="header-title">Movies similar to {{movie?.title}}</h1>
       <div class="button-container">
         <button class="button" (click)="goToFiltering()">filter results</button>
         <button class="button" (click)="goToSorting()">sort results</button>
@@ -12,9 +12,19 @@
     <!-- Movie Cards Section -->
     <div class="movie-grid">
       <div *ngFor="let movie of movies" class="movie-card" (click)="goToDetails(movie.id)">
-        <img src="https://via.placeholder.com/385x421" alt="{{movie.title}}" />
+        <img src="" alt="{{movie.title}}" />
       </div>
     </div>
     
   </div>
+  
+  <div class="button-container">
+    <button mat-fab class="load_more_button" (click)="loadPreviousPage()">
+      <mat-icon>navigate_before</mat-icon>
+    </button>
+    <button mat-fab class="load_more_button" (click)="loadNextPage()">
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+  </div>
+
 </body>

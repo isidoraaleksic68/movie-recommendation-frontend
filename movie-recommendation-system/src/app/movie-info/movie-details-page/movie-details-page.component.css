@@ -6,6 +6,7 @@ body {
     padding: 5% 0;
     display: flex;
     flex-direction: column;
+    font-family: "Playfair Display", serif;
     align-items: center;
 }
 
@@ -15,10 +16,11 @@ body {
     max-width: 1200px;
     width: 100%;
     padding: 5% 3%;
+    padding-bottom: 3%;
     background-color: #4F1787;
     border-radius: 20px 20px 0 0 ;
     color: #FFF;
-    align-items: flex-start; /* Aligns poster and movie info side-by-side */
+    align-items: center; /* Aligns poster and movie info side-by-side */
     justify-content: center;
     /* margin-bottom: 40px; Adds spacing before the centered button and trailers */
 }
@@ -28,7 +30,7 @@ body {
     width: 300px;
     height: auto;
     border-radius: 10px;
-    margin-right: 40px;
+    margin-right: 3%;
     max-height: 400px;
 }
 
@@ -36,7 +38,7 @@ body {
 .movie-info-container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     width: 100%;
 }
 
@@ -59,7 +61,6 @@ body {
     font-family: "Playfair Display", serif;
     font-size: 20px;
     font-weight: 700;
-    text-decoration: underline;
 }
 
 /* Keywords Grid Layout */
@@ -104,6 +105,7 @@ body {
     max-width: 1200px;
     width: 100%;
     padding: 5% 3%;
+    padding-top: 0%;
     background-color: #4F1787;
     border-radius:  0 0 20px 20px;
     color: #FFF;
@@ -135,6 +137,7 @@ body {
 #media-and-trailers-container {
     width: 80%;
     display: flex;
+    align-items: center;
     justify-content: center; /* Centers the media and trailers */
     /* margin-top: 5%; */
 }
