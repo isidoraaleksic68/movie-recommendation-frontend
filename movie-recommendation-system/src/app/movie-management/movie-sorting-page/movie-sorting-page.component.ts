@@ -15,6 +15,7 @@ export class MovieSortingPageComponent implements OnInit{
   currentPage: number = 1;
   isSorted:boolean=false;
   sortForm!: FormGroup;
+  moviePosterMap: { [key: number]: string | null } = {}; // Map to store movie posters
 
   constructor(private movieService: MovieService, private router:Router, private route:ActivatedRoute,  private fb: FormBuilder ) { 
     this.sortForm = this.fb.group({
@@ -50,6 +51,17 @@ export class MovieSortingPageComponent implements OnInit{
     this.movieService.getRecommendedMovies(this.movie?.title as string, this.currentPage).subscribe(
       (movies: Movie[]) => {
         this.movies = movies;
+        this.movies.forEach(movie => {
+          this.movieService.getMoviePoster(movie.id).subscribe(
+            poster => {
+              this.moviePosterMap[movie.id] = poster; // Store the poster URL
+            },
+            error => {
+              console.error('Error fetching movie poster for ID:', movie.id, error);
+              this.moviePosterMap[movie.id] = null; // Handle error
+            }
+          );
+        });
       },
       (error) => {
         console.error('Failed to fetch recommended movies.', error);
@@ -100,6 +112,17 @@ export class MovieSortingPageComponent implements OnInit{
         (response: any) => {
           this.isSorted = true;
           this.movies = response.sorted_movies;
+          this.movies.forEach(movie => {
+            this.movieService.getMoviePoster(movie.id).subscribe(
+              poster => {
+                this.moviePosterMap[movie.id] = poster; // Store the poster URL
+              },
+              error => {
+                console.error('Error fetching movie poster for ID:', movie.id, error);
+                this.moviePosterMap[movie.id] = null; // Handle error
+              }
+            );
+          });
         },
         (error) => {
           console.error('Error sorting movies:', error);
