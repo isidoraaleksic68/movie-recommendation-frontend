@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/model';
 import { MovieService } from '../movie.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-movie-sorting-page',
@@ -13,8 +14,18 @@ export class MovieSortingPageComponent implements OnInit{
   movie: Movie | undefined;
   currentPage: number = 1;
   isSorted:boolean=false;
+  sortForm!: FormGroup;
 
-  constructor(private movieService: MovieService, private router:Router, private route:ActivatedRoute) { }
+  constructor(private movieService: MovieService, private router:Router, private route:ActivatedRoute,  private fb: FormBuilder ) { 
+    this.sortForm = this.fb.group({
+      popularity: false,
+      release_date: false,
+      revenue: false,
+      runtime: false,
+      vote_avarage: false,
+      vote_count: false
+    });
+  }
 
 
   ngOnInit(): void {
@@ -71,8 +82,31 @@ export class MovieSortingPageComponent implements OnInit{
     }
   }
 
-  
-  sortResults() {
-  }
 
+
+  sortResults() {
+    const selectedSorts: string[] = [];
+
+    // Get selected sorting options based on form values
+    Object.keys(this.sortForm.value).forEach(key => {
+      if (this.sortForm.value[key]) {
+        selectedSorts.push(key);
+      }
+    });
+
+    // Call the movie service to handle sorting
+    if (selectedSorts.length > 0) {
+      this.movieService.sortMovies(selectedSorts, this.movie?.title as string, this.currentPage).subscribe(
+        (response: any) => {
+          this.isSorted = true;
+          this.movies = response.sorted_movies;
+        },
+        (error) => {
+          console.error('Error sorting movies:', error);
+        }
+      );
+    } else {
+      console.log('No sorting criteria selected');
+    }
+  }
 }

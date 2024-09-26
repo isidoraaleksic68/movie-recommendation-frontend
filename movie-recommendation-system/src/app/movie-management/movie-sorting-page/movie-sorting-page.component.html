@@ -5,14 +5,25 @@
             <!-- Sorting Container -->
             <div class="sorting-container">
                 <div class="sort-title">Sort by</div>
-                <div class="checkbox-container">
-                    <mat-checkbox #checkbox value="Vote" class="example-margin">Popularity</mat-checkbox>
-                    <mat-checkbox #checkbox value="Vote" class="example-margin">Release date</mat-checkbox>
-                    <mat-checkbox #checkbox value="Vote" class="example-margin">Revenue</mat-checkbox>
-                    <mat-checkbox #checkbox value="Vote" class="example-margin">Runtime</mat-checkbox>
-                    <mat-checkbox #checkbox value="Vote" class="example-margin">Vote avarage</mat-checkbox>
-                    <mat-checkbox #checkbox value="Vote" class="example-margin">Vote count</mat-checkbox>
-                </div>
+                <form [formGroup]="sortForm">
+                    <div class="checkbox-container">
+                      <mat-checkbox formControlName="popularity">Popularity</mat-checkbox>
+                      <mat-checkbox formControlName="release_date">Release Date</mat-checkbox>
+                      <mat-checkbox formControlName="revenue">Revenue</mat-checkbox>
+                      <mat-checkbox formControlName="runtime">Runtime</mat-checkbox>
+                      <mat-checkbox formControlName="vote_avarage">Vote avarage</mat-checkbox>
+                      <mat-checkbox formControlName="vote_count">Vote count</mat-checkbox>
+                      <!-- Add more checkboxes as needed -->
+                    </div>
+                  </form>
+                <!-- <div class="checkbox-container">
+                    <mat-checkbox [(ngModel)]="sortOptions.popularity" class="example-margin">Popularity</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="sortOptions.release_date" class="example-margin">Release Date</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="sortOptions.revenue" class="example-margin">Revenue</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="sortOptions.runtime" class="example-margin">Runtime</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="sortOptions.vote_avarage" class="example-margin">Vote avarage</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="sortOptions.vote_count" class="example-margin">Vote count</mat-checkbox>
+                </div> -->
             </div>
             <div class="dropdown-container">
                 <button class="button" (click)="sortResults()">sort results</button>
