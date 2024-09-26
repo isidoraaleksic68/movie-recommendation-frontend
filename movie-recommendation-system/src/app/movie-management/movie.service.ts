@@ -51,5 +51,8 @@ export class MovieService {
   getMetadata(): Observable<any> {
     return this.http.get(`${this.apiUrl}/movies/filtering/metadata`);
   }
-  
+ 
+  sortMovies(sortCriteria: string[], movie_title: string, page: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/movies/sort?page=${page}`, { sort_criteria: sortCriteria, movie_title: movie_title});
+  }
 }

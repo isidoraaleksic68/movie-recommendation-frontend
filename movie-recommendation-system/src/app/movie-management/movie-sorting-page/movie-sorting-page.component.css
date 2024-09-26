@@ -147,3 +147,23 @@ body {
     object-fit: cover;
     border-radius: 30px 30px 30px 0px;
 }
+
+.button-container-pagination{
+    background-color: #341D47; 
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 5%;
+    padding-bottom: 5%;
+    gap:20px;
+  }
+  
+  .load_more_button{
+    background-color: #FFDFD6;
+    border: none;
+    border-radius: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+  }
