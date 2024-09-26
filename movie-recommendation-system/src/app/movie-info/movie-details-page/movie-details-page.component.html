@@ -1,17 +1,17 @@
 <body>
     <div class="movie-details-container">
         <!-- Movie Poster on the left -->
-        <img src="https://via.placeholder.com/385x421" alt="Movie Poster" class="movie-poster" />
+        <img [src]="moviePosterMap[movie.id]" alt="{{movie.title}}" class="movie-poster" />
 
         <!-- Movie Details on the right -->
         <div class="movie-info-container">
             <div class="movie-title-container">
-                <h1 class="movie-title">{{ movie?.title }}</h1>
+                <h1 class="movie-title">{{ movie.title }}</h1>
                 <div class="movie-details">
                     <span class="release-year-duration">
-                        {{ getReleaseYear(movie?.release_date) }} - {{ getFormattedRuntime(movie?.runtime) }}
+                        {{ getReleaseYear(movie.release_date) }} - {{ getFormattedRuntime(movie.runtime) }}
                       </span>
-                    <span class="movie-rating" *ngIf="movie?.vote_count!=0">{{ movie?.vote_average }}/10</span>
+                    <span class="movie-rating" *ngIf="movie?.vote_count!=0">{{ movie.vote_average }}/10</span>
                 </div>
 
                 <!-- Keywords -->
@@ -22,7 +22,7 @@
 
                 <!-- Overview -->
                 <div class="overview-container">
-                    <p class="overview">{{ movie?.overview }}</p>
+                    <p class="overview">{{ movie.overview }}</p>
                 </div>
             </div>
         </div>

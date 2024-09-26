@@ -9,7 +9,9 @@ import { MovieService } from 'src/app/movie-management/movie.service';
   styleUrls: ['./movie-details-page.component.css']
 })
 export class MovieDetailsPageComponent implements OnInit{
-  movie: Movie | undefined;
+  movie!: Movie;
+  
+  moviePosterMap: { [key: number]: string | null } = {}; // Map to store movie posters
 
   constructor(private movieService: MovieService, private route: ActivatedRoute, private router:Router) { }
 
@@ -23,6 +25,15 @@ export class MovieDetailsPageComponent implements OnInit{
       (data) => {
         this.movie = data;
         console.log('Movie details:', this.movie);
+        this.movieService.getMoviePoster(this.movie.id).subscribe(
+            poster => {
+              this.moviePosterMap[this.movie.id] = poster; // Store the poster URL
+            },
+            error => {
+              console.error('Error fetching movie poster for ID:', this.movie.id, error);
+              this.moviePosterMap[this.movie.id] = null; // Handle error
+            }
+          );
       },
       (error) => {
         console.error('Error fetching movie details:', error);
