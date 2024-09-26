@@ -17,12 +17,24 @@ export class MovieFilteringPageComponent implements OnInit {
   selectedGenre: string = ''; // Ensure you have proper initialization
   selectedLanguage: string = ''; // Ensure you have proper initialization
   isFiltered: boolean = false;
+  genres: string[] = [];
+  languages: string[] = [];
 
   constructor(private movieService: MovieService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.loadFilteringMetadata();
     const movieId = Number(this.route.snapshot.paramMap.get('id'));
     this.fetchMovieDetails(movieId);
+  }
+
+  loadFilteringMetadata() {
+    this.movieService.getMetadata().subscribe(data => {
+      this.genres = data.genres;
+      this.languages = data.spoken_languages;
+    }, error => {
+      console.error('Error fetching metadata', error);
+    });
   }
   
   fetchMovieDetails(movieId: number): void {

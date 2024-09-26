@@ -16,6 +16,7 @@
 
                 <!-- Keywords -->
                 <div class="keywords-container">
+                    <div class="keyword" *ngFor="let genre of movie?.genres">{{genre.name.toLowerCase()}}</div>
                     <div class="keyword" *ngFor="let keyword of movie?.keywords">{{keyword.name}}</div>
                 </div>
 

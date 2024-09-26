@@ -47,5 +47,9 @@ export class MovieService {
         map(response => response.filtered_movies) // Extract only the recommendations array
       );
   }
+
+  getMetadata(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/movies/filtering/metadata`);
+  }
   
 }
