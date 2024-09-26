@@ -12,6 +12,7 @@ export class MovieRecommendationsComponent implements OnInit{
   movie : Movie | undefined;
   movies: Movie[] = [];
   currentPage: number = 1;
+  moviePosterMap: { [key: number]: string | null } = {}; // Map to store movie posters
 
   constructor(private movieService: MovieService, private router:Router, private route:ActivatedRoute) { }
 
@@ -38,6 +39,17 @@ export class MovieRecommendationsComponent implements OnInit{
     this.movieService.getRecommendedMovies(this.movie?.title as string, this.currentPage).subscribe(
       (movies: Movie[]) => {
         this.movies = movies;
+        this.movies.forEach(movie => {
+          this.movieService.getMoviePoster(movie.id).subscribe(
+            poster => {
+              this.moviePosterMap[movie.id] = poster; // Store the poster URL
+            },
+            error => {
+              console.error('Error fetching movie poster for ID:', movie.id, error);
+              this.moviePosterMap[movie.id] = null; // Handle error
+            }
+          );
+        });
       },
       (error) => {
         console.error('Failed to fetch recommended movies.', error);
@@ -49,6 +61,7 @@ export class MovieRecommendationsComponent implements OnInit{
   loadNextPage(): void {
     this.currentPage++;
     this.fetchMovies();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   loadPreviousPage(): void {
@@ -57,6 +70,7 @@ export class MovieRecommendationsComponent implements OnInit{
       return;
     }
     this.fetchMovies();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   
 

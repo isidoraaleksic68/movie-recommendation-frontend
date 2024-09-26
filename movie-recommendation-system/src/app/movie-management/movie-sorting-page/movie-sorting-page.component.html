@@ -16,14 +16,6 @@
                       <!-- Add more checkboxes as needed -->
                     </div>
                   </form>
-                <!-- <div class="checkbox-container">
-                    <mat-checkbox [(ngModel)]="sortOptions.popularity" class="example-margin">Popularity</mat-checkbox>
-                    <mat-checkbox [(ngModel)]="sortOptions.release_date" class="example-margin">Release Date</mat-checkbox>
-                    <mat-checkbox [(ngModel)]="sortOptions.revenue" class="example-margin">Revenue</mat-checkbox>
-                    <mat-checkbox [(ngModel)]="sortOptions.runtime" class="example-margin">Runtime</mat-checkbox>
-                    <mat-checkbox [(ngModel)]="sortOptions.vote_avarage" class="example-margin">Vote avarage</mat-checkbox>
-                    <mat-checkbox [(ngModel)]="sortOptions.vote_count" class="example-margin">Vote count</mat-checkbox>
-                </div> -->
             </div>
             <div class="dropdown-container">
                 <button class="button" (click)="sortResults()">sort results</button>
@@ -33,7 +25,7 @@
         <!-- Movie Cards Section -->
         <div class="movie-grid">
             <div *ngFor="let movie of movies" class="movie-card" (click)="goToDetails(movie.id)">
-                <img src="" alt="{{movie.title}}" />
+                <img [src]="moviePosterMap[movie.id]" alt="{{movie.title}}" />
             </div>
         </div>
     </div>

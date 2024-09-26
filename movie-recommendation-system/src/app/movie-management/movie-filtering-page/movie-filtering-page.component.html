@@ -24,7 +24,7 @@
       <!-- Movie Cards Section -->
       <div class="movie-grid">
         <div *ngFor="let movie of movies" class="movie-card" (click)="goToDetails(movie.id)">
-          <img src="" alt="{{movie.title}}" />
+          <img [src]="moviePosterMap[movie.id]" alt="{{movie.title}}" />
         </div>
       </div>
     </div>

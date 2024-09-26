@@ -55,4 +55,15 @@ export class MovieService {
   sortMovies(sortCriteria: string[], movie_title: string, page: number): Observable<any> {
     return this.http.post(`${this.apiUrl}/movies/sort?page=${page}`, { sort_criteria: sortCriteria, movie_title: movie_title});
   }
+
+  getMoviePoster(movieId: number): Observable<string> {
+    return this.http.get<{ movie_poster: string }>(`${this.apiUrl}/movies/${movieId}/poster`)
+      .pipe(map(response => response.movie_poster));
+  }
+
+  getMovieTrailers(movieId: number): Observable<string[]> {
+    return this.http.get<{ trailers: string[] }>(`${this.apiUrl}/movies/${movieId}/trailers`)
+      .pipe(map(response => response.trailers));
+  }
+  
 }

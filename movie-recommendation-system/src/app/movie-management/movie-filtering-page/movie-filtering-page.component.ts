@@ -19,6 +19,7 @@ export class MovieFilteringPageComponent implements OnInit {
   isFiltered: boolean = false;
   genres: string[] = [];
   languages: string[] = [];
+  moviePosterMap: { [key: number]: string | null } = {}; // Map to store movie posters
 
   constructor(private movieService: MovieService, private router: Router, private route: ActivatedRoute) { }
 
@@ -54,6 +55,17 @@ export class MovieFilteringPageComponent implements OnInit {
     this.movieService.getRecommendedMovies(this.movie?.title as string, this.currentPage).subscribe(
       (movies: Movie[]) => {
         this.movies = movies;
+        this.movies.forEach(movie => {
+          this.movieService.getMoviePoster(movie.id).subscribe(
+            poster => {
+              this.moviePosterMap[movie.id] = poster; // Store the poster URL
+            },
+            error => {
+              console.error('Error fetching movie poster for ID:', movie.id, error);
+              this.moviePosterMap[movie.id] = null; // Handle error
+            }
+          );
+        });
       },
       (error) => {
         console.error('Failed to fetch recommended movies.', error);
@@ -75,6 +87,17 @@ export class MovieFilteringPageComponent implements OnInit {
     this.movieService.filterMovies(this.selectedGenre, this.selectedLanguage, this.movie?.title as string, this.currentPage)
       .subscribe((filteredMovies: Movie[]) => {
         this.movies = filteredMovies;
+        this.movies.forEach(movie => {
+          this.movieService.getMoviePoster(movie.id).subscribe(
+            poster => {
+              this.moviePosterMap[movie.id] = poster; // Store the poster URL
+            },
+            error => {
+              console.error('Error fetching movie poster for ID:', movie.id, error);
+              this.moviePosterMap[movie.id] = null; // Handle error
+            }
+          );
+        });
       }, (error) => {
         console.error('Error filtering movies:', error);
       });
@@ -87,6 +110,8 @@ export class MovieFilteringPageComponent implements OnInit {
     } else {
       this.fetchMovies();
     } 
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   loadPreviousPage(): void {
@@ -94,9 +119,11 @@ export class MovieFilteringPageComponent implements OnInit {
       this.currentPage--;
       if (this.isFiltered) {
         this.filterResults();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         this.fetchMovies();
-      } 
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
   }
 }
