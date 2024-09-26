@@ -14,6 +14,7 @@ export class MovieSearchPageComponent {
   searchQuery: string = '';
   isSearched: boolean = false;
   currentPage: number = 1; // Track the current page
+  moviePosterMap: { [key: number]: string | null } = {}; // Map to store movie posters
 
   constructor(private movieService: MovieService, private router: Router) { }
 
@@ -26,6 +27,17 @@ export class MovieSearchPageComponent {
       (data: Movie[]) => {
         this.movies = data;
         console.log("MOVIES", this.movies);
+        this.movies.forEach(movie => {
+          this.movieService.getMoviePoster(movie.id).subscribe(
+            poster => {
+              this.moviePosterMap[movie.id] = poster; // Store the poster URL
+            },
+            error => {
+              console.error('Error fetching movie poster for ID:', movie.id, error);
+              this.moviePosterMap[movie.id] = null; // Handle error
+            }
+          );
+        });
       },
       (error) => {
         console.error('Failed to fetch top rated movies.', error);
@@ -60,7 +72,18 @@ export class MovieSearchPageComponent {
     this.isSearched = true;
     this.movieService.searchMovies(this.searchQuery, this.currentPage).subscribe((response: any) => {
       console.log("RESPONSE", response);
-      this.movies = response['searching results']; // Accessing the correct property
+      this.movies = response['searching results']; // Accessing the correct property'
+      this.movies.forEach(movie => {
+        this.movieService.getMoviePoster(movie.id).subscribe(
+          poster => {
+            this.moviePosterMap[movie.id] = poster; // Store the poster URL
+          },
+          error => {
+            console.error('Error fetching movie poster for ID:', movie.id, error);
+            this.moviePosterMap[movie.id] = null; // Handle error
+          }
+        );
+      });
     }, (error) => {
       console.error('Failed to search movies.', error);
     });
