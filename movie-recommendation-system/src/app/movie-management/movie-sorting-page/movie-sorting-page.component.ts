@@ -78,8 +78,10 @@ export class MovieSortingPageComponent implements OnInit{
     this.currentPage++;
     if (this.isSorted) {
       this.sortResults();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       this.fetchMovies();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } 
   }
 
@@ -88,8 +90,10 @@ export class MovieSortingPageComponent implements OnInit{
       this.currentPage--;
       if (this.isSorted) {
         this.sortResults();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         this.fetchMovies();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } 
     }
   }

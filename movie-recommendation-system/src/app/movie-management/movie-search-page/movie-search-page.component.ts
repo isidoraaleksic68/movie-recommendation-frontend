@@ -53,6 +53,8 @@ export class MovieSearchPageComponent {
     else{
       this.fetchTopRatedMovies();
     }
+    // Scroll to top of the page after loading the next page
+    window.scrollTo({ top: 650, behavior: 'smooth' });
   }
 
   loadPreviousPage(): void {
@@ -62,9 +64,11 @@ export class MovieSearchPageComponent {
     }
     if(this.isSearched){
       this.searchMovies();
+      window.scrollTo({ top: 650, behavior: 'smooth' });
     }
     else{
       this.fetchTopRatedMovies();
+      window.scrollTo({ top: 650, behavior: 'smooth' });
     }
   }
 

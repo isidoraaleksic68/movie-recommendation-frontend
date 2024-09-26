@@ -110,6 +110,8 @@ export class MovieFilteringPageComponent implements OnInit {
     } else {
       this.fetchMovies();
     } 
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   loadPreviousPage(): void {
@@ -117,9 +119,11 @@ export class MovieFilteringPageComponent implements OnInit {
       this.currentPage--;
       if (this.isFiltered) {
         this.filterResults();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         this.fetchMovies();
-      } 
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
   }
 }

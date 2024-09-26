@@ -61,6 +61,7 @@ export class MovieRecommendationsComponent implements OnInit{
   loadNextPage(): void {
     this.currentPage++;
     this.fetchMovies();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   loadPreviousPage(): void {
@@ -69,6 +70,7 @@ export class MovieRecommendationsComponent implements OnInit{
       return;
     }
     this.fetchMovies();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   
 
