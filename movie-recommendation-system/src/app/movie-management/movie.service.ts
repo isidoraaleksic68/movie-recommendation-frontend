@@ -39,5 +39,17 @@ export class MovieService {
         map(response => response.recommendations) // Extract only the recommendations array
       );
   }
+
+  filterMovies(genre: string, language: string, movie_title:string, page: number): Observable<Movie[]> {
+    const body = { genre, language, movie_title};
+    return this.http.post<{ filtered_movies: Movie[] }>(`${this.apiUrl}/movies/filter?page=${page}`,  body)
+      .pipe(
+        map(response => response.filtered_movies) // Extract only the recommendations array
+      );
+  }
+
+  getMetadata(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/movies/filtering/metadata`);
+  }
   
 }

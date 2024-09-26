@@ -3,22 +3,17 @@
       <!-- Header Section -->
       <div class="header">
         <div class="button-container">
-            <select class="dropdown">
-                <option value="">Select genre</option>
-                <option value="Action">Action</option>
-                <option value="Adventure">Adventure</option>
-                <option value="Comedy">Comedy</option>
-                <option value="Drama">Drama</option>
-              </select>
-      
-              <!-- Dropdown for Spoken Language Selection -->
-              <select class="dropdown">
-                <option value="">Select spoken language</option>
-                <option value="English">English</option>
-                <option value="Spanish">Spanish</option>
-                <option value="French">French</option>
-                <option value="German">German</option>
-              </select>
+            <!-- Dropdown for Genre Selection -->
+            <select class="dropdown" [(ngModel)]="selectedGenre">
+              <option value="" hidden>Select genre</option>
+              <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+            </select>
+            
+            <!-- Dropdown for Spoken Language Selection -->
+            <select class="dropdown" [(ngModel)]="selectedLanguage">
+              <option value="" hidden>Select spoken language</option>
+              <option *ngFor="let language of languages" [value]="language">{{ language }}</option>
+            </select>
         </div>
         
         <div class="dropdown-container">
@@ -29,9 +24,19 @@
       <!-- Movie Cards Section -->
       <div class="movie-grid">
         <div *ngFor="let movie of movies" class="movie-card" (click)="goToDetails(movie.id)">
-          <img src="https://via.placeholder.com/385x421" alt="{{movie.title}}" />
+          <img src="" alt="{{movie.title}}" />
         </div>
       </div>
     </div>
+
+    <div class="button-container-pagination">
+      <button mat-fab class="load_more_button" (click)="loadPreviousPage()">
+        <mat-icon>navigate_before</mat-icon>
+      </button>
+      <button mat-fab class="load_more_button" (click)="loadNextPage()">
+        <mat-icon>navigate_next</mat-icon>
+      </button>
+    </div>
+
   </body>
   
