@@ -47,7 +47,7 @@ The Movie Recommendation System frontend is built with **Angular** and designed 
    git clone https://github.com/isidoraaleksic68/movie-recommendation-frontend.git
 2. Navigate to the project directory:
   ```bash
-  cd movie-recommendation-frontend
+  cd movie-recommendation-system
   ```
 3.Install dependencies:
   ```bash
