@@ -59,7 +59,7 @@ The Movie Recommendation System frontend is built with **Angular** and designed 
   ```
 This will start the application on http://localhost:4200.
 
-###🎯 Usage
+### 🎯 Usage
 - Search for Movies: Use the search bar to look for movies by title or keyword.
 - Find Similar Movies: Click on a movie to view a list of similar recommendations based on the movie's attributes.
 - Filter Movies: Apply filters based on genres, release dates, vote averages, etc., using the filter panel.
