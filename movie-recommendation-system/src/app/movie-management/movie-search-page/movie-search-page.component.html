@@ -19,10 +19,10 @@
   </div>
 
   <div class="button-container">
-    <button mat-fab class="load_more_button" (click)="loadPreviousPage()">
+    <button mat-fab class="load_more_button" (click)="loadPreviousPage()" *ngIf="hasPreviousPage">
       <mat-icon>navigate_before</mat-icon>
     </button>
-    <button mat-fab class="load_more_button" (click)="loadNextPage()">
+    <button mat-fab class="load_more_button" (click)="loadNextPage()" *ngIf="hasNextPage">
       <mat-icon>navigate_next</mat-icon>
     </button>
   </div>

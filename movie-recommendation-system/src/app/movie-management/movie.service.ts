@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Movie } from '../model';
-import { map } from 'rxjs/operators'; // Import 'map' operator
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -26,7 +26,10 @@ export class MovieService {
     return this.http.get<Movie>(`${this.apiUrl}/movies/${movieId}`);
   }
 
-  searchMovies(query: string, page : number = 1): Observable<Movie[]> {
+  searchMovies(query: string, page: number = 1): Observable<Movie[]> {
+    if (query.length > 0) {
+      query = query.charAt(0).toUpperCase() + query.slice(1);
+    }
     return this.http.post<Movie[]>(`${this.apiUrl}/movies/search?page=${page}`, { query });
   }
 
@@ -36,7 +39,7 @@ export class MovieService {
     
     return this.http.post<{ recommendations: Movie[] }>(`${this.apiUrl}/movies/recommend?page=${page}`, { movieTitle })
       .pipe(
-        map(response => response.recommendations) // Extract only the recommendations array
+        map(response => response.recommendations) 
       );
   }
 
@@ -44,7 +47,7 @@ export class MovieService {
     const body = { genre, language, movie_title};
     return this.http.post<{ filtered_movies: Movie[] }>(`${this.apiUrl}/movies/filter?page=${page}`,  body)
       .pipe(
-        map(response => response.filtered_movies) // Extract only the recommendations array
+        map(response => response.filtered_movies) 
       );
   }
 

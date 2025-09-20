@@ -1,8 +1,6 @@
 <body>
     <div class="page-container">
-        <!-- Header Section -->
         <div class="header">
-            <!-- Sorting Container -->
             <div class="sorting-container">
                 <div class="sort-title">Sort by</div>
                 <form [formGroup]="sortForm">
@@ -13,7 +11,6 @@
                       <mat-checkbox formControlName="runtime">Runtime</mat-checkbox>
                       <mat-checkbox formControlName="vote_avarage">Vote avarage</mat-checkbox>
                       <mat-checkbox formControlName="vote_count">Vote count</mat-checkbox>
-                      <!-- Add more checkboxes as needed -->
                     </div>
                   </form>
             </div>
@@ -22,7 +19,6 @@
             </div>
         </div>
 
-        <!-- Movie Cards Section -->
         <div class="movie-grid">
             <div *ngFor="let movie of movies" class="movie-card" (click)="goToDetails(movie.id)">
                 <img [src]="moviePosterMap[movie.id]" alt="{{movie.title}}" />

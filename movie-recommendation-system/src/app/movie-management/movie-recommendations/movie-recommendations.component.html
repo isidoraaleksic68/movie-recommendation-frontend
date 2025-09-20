@@ -1,6 +1,5 @@
 <body>
   <div class="page-container">
-    <!-- Header Section -->
     <div class="header">
       <h1 class="header-title">Movies similar to {{movie?.title}}</h1>
       <div class="button-container">
@@ -9,7 +8,6 @@
       </div>
     </div>
 
-    <!-- Movie Cards Section -->
     <div class="movie-grid">
       <div *ngFor="let movie of movies" class="movie-card" (click)="goToDetails(movie.id)">
         <img [src]="moviePosterMap[movie.id]" alt="{{movie.title}}" />

@@ -1,4 +1,4 @@
-/* Global box-sizing to prevent width issues */
+
 * {
     box-sizing: border-box;
 }
@@ -8,11 +8,10 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
-    width: 100%; /* Ensure the body doesn't exceed the viewport width */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    width: 100%;
+    overflow-x: hidden;
 }
 
-/* Search Container */
 .search-container {
     display: flex;
     flex-direction: column;
@@ -20,7 +19,7 @@ body {
     justify-content: center;
     background-color: #1E1E1E36;
     padding: 15% 0;
-    width: 100%; /* Ensure full-width without using viewport units */
+    width: 100%;
 }
 
 .search-title {
@@ -63,19 +62,17 @@ body {
     cursor: pointer;
 }
 
-/* Movies Container */
 .movies-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 30px;
     padding: 20px;
-    width: 100%; /* Ensure full width without causing overflow */
-    max-width: 100%; /* Prevent potential grid overflow */
-    margin: 0 auto; /* Center the container horizontally */
-    overflow-x: hidden; /* Ensure no horizontal scroll on small screens */
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow-x: hidden;
 }
 
-/* Top Rated Title */
 .top-rated-title {
     color: #FFDFD6;
     font-size: 20px;
@@ -85,7 +82,6 @@ body {
     margin-top: 20px;
 }
 
-/* Movie Card */
 .movie-card {
     width: 100%;
     max-width: 385.534px;
@@ -106,7 +102,6 @@ body {
     border-radius: 30px 30px 30px 0px;
 }
 
-/* Responsive Media Queries */
 @media (max-width: 768px) {
     .search-title {
         font-size: 28px;
@@ -143,24 +138,21 @@ body {
     }
 }
 
-/* Adjust grid for larger screens */
 @media (min-width: 1200px) {
     .movies-container {
-        grid-template-columns: repeat(4, 1fr); /* 4 movies per row */
+        grid-template-columns: repeat(4, 1fr);
     }
 }
-  
-/* Adjust grid for medium screens */
+
 @media (min-width: 768px) and (max-width: 1199px) {
     .movies-container {
-        grid-template-columns: repeat(3, 1fr); /* 3 movies per row */
+        grid-template-columns: repeat(3, 1fr);
     }
 }
-  
-/* Adjust grid for smaller screens */
+
 @media (max-width: 767px) {
     .movies-container {
-        grid-template-columns: repeat(1, 1fr); /* 1 movie per row */
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 

@@ -1,13 +1,11 @@
-/* Background */
 body {
-    background-color: #341D47; /* Combination of #4F1787 and #1E1E1E3D */
+    background-color: #341D47;
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
     height: 100%;
 }
 
-/* Container for the entire page */
 .page-container {
     display: flex;
     flex-direction: column;
@@ -15,7 +13,6 @@ body {
     padding: 20px;
 }
 
-/* Header Section */
 .header {
     display: flex;
     justify-content: space-between;
@@ -24,7 +21,6 @@ body {
     padding: 20px 0;
 }
 
-/* Sorting Container */
 .sorting-container {
     width: 683.233px;
     height: 178px;
@@ -37,7 +33,6 @@ body {
     justify-content: flex-start;
 }
 
-/* Sort by title */
 .sort-title {
     display: flex;
     width: 169.99px;
@@ -49,21 +44,19 @@ body {
     font-family: 'Inter', sans-serif;
     font-size: 20px;
     font-weight: 500;
-    line-height: 100%; /* 20px */
-    margin-bottom: 20px; /* Space below title */
+    line-height: 100%;
+    margin-bottom: 20px;
 }
 
-/* Checkboxes container */
 .checkbox-container {
     display: grid;
     align-items: center;
     padding-top: 5%;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     flex-wrap: wrap;
-    gap: 20px; /* Space between the checkboxes */
+    gap: 20px;
 }
 
-/* Individual checkbox label styling */
 .example-margin {
     display: flex;
     align-items: center;
@@ -74,10 +67,9 @@ body {
     cursor: pointer;
 }
 
-/* Button Styles */
 .button-container {
     display: flex;
-    gap: 20px; /* Space between buttons */
+    gap: 20px;
 }
 
 .button {
@@ -96,7 +88,6 @@ body {
     background-color: #FFBFB5;
 }
 
-/* Movie Cards */
 .movie-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -107,24 +98,21 @@ body {
     min-height: 100%;
 }
 
-/* Adjust grid for larger screens */
 @media (min-width: 1200px) {
     .movie-grid {
-        grid-template-columns: repeat(4, 1fr); /* 4 movies per row */
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
-/* Adjust grid for medium screens */
 @media (min-width: 768px) and (max-width: 1199px) {
     .movie-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 movies per row */
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
-/* Adjust grid for smaller screens */
 @media (max-width: 767px) {
     .movie-grid {
-        grid-template-columns: repeat(1, 1fr); /* 1 movie per row (column layout) */
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 

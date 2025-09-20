@@ -15,7 +15,7 @@ export class MovieSortingPageComponent implements OnInit{
   currentPage: number = 1;
   isSorted:boolean=false;
   sortForm!: FormGroup;
-  moviePosterMap: { [key: number]: string | null } = {}; // Map to store movie posters
+  moviePosterMap: { [key: number]: string | null } = {};
 
   constructor(private movieService: MovieService, private router:Router, private route:ActivatedRoute,  private fb: FormBuilder ) { 
     this.sortForm = this.fb.group({
@@ -54,11 +54,11 @@ export class MovieSortingPageComponent implements OnInit{
         this.movies.forEach(movie => {
           this.movieService.getMoviePoster(movie.id).subscribe(
             poster => {
-              this.moviePosterMap[movie.id] = poster; // Store the poster URL
+              this.moviePosterMap[movie.id] = poster;
             },
             error => {
               console.error('Error fetching movie poster for ID:', movie.id, error);
-              this.moviePosterMap[movie.id] = null; // Handle error
+              this.moviePosterMap[movie.id] = null;
             }
           );
         });
@@ -86,7 +86,7 @@ export class MovieSortingPageComponent implements OnInit{
   }
 
   loadPreviousPage(): void {
-    if (this.currentPage > 1) { // Prevent going below page 1
+    if (this.currentPage > 1) {
       this.currentPage--;
       if (this.isSorted) {
         this.sortResults();
@@ -103,14 +103,12 @@ export class MovieSortingPageComponent implements OnInit{
   sortResults() {
     const selectedSorts: string[] = [];
 
-    // Get selected sorting options based on form values
     Object.keys(this.sortForm.value).forEach(key => {
       if (this.sortForm.value[key]) {
         selectedSorts.push(key);
       }
     });
 
-    // Call the movie service to handle sorting
     if (selectedSorts.length > 0) {
       this.movieService.sortMovies(selectedSorts, this.movie?.title as string, this.currentPage).subscribe(
         (response: any) => {
@@ -119,11 +117,11 @@ export class MovieSortingPageComponent implements OnInit{
           this.movies.forEach(movie => {
             this.movieService.getMoviePoster(movie.id).subscribe(
               poster => {
-                this.moviePosterMap[movie.id] = poster; // Store the poster URL
+                this.moviePosterMap[movie.id] = poster;
               },
               error => {
                 console.error('Error fetching movie poster for ID:', movie.id, error);
-                this.moviePosterMap[movie.id] = null; // Handle error
+                this.moviePosterMap[movie.id] = null;
               }
             );
           });

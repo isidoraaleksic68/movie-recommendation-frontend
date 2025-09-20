@@ -1,14 +1,11 @@
-/* Background */
-
 body {
-    background-color: #341D47; /* Combination of #4F1787 and #1E1E1E3D */
+    background-color: #341D47;
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
     height: auto;
   }
   
-  /* Container for the entire page */
   .page-container {
     display: flex;
     flex-direction: column;
@@ -16,7 +13,6 @@ body {
     padding: 20px;
   }
   
-  /* Header Section */
   .header {
     display: flex;
     justify-content: space-between;
@@ -38,7 +34,7 @@ body {
   
   .button-container {
     display: flex;
-    gap: 20px; /* Space between buttons */
+    gap: 20px;
   }
   
   .button {
@@ -57,7 +53,6 @@ body {
     background-color: #FFBFB5;
   }
   
-  /* Movie Cards */
   .movie-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -68,24 +63,21 @@ body {
     min-height: 100%;
   }
   
-  /* Adjust grid for larger screens */
   @media (min-width: 1200px) {
     .movie-grid {
-      grid-template-columns: repeat(4, 1fr); /* 4 movies per row */
+      grid-template-columns: repeat(4, 1fr);
     }
   }
   
-  /* Adjust grid for medium screens */
   @media (min-width: 768px) and (max-width: 1199px) {
     .movie-grid {
-      grid-template-columns: repeat(3, 1fr); /* 3 movies per row */
+      grid-template-columns: repeat(3, 1fr);
     }
   }
   
-  /* Adjust grid for smaller screens */
   @media (max-width: 767px) {
     .movie-grid {
-      grid-template-columns: repeat(1, 1fr); /* 1 movie per row (column layout) */
+      grid-template-columns: repeat(1, 1fr);
     }
   }
   

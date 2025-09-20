@@ -10,16 +10,15 @@ import { Movie } from 'src/app/model';
 })
 
 export class MovieFilteringPageComponent implements OnInit {
-  
   movies: Movie[] = [];
   movie: Movie | undefined;
   currentPage: number = 1;
-  selectedGenre: string = ''; // Ensure you have proper initialization
-  selectedLanguage: string = ''; // Ensure you have proper initialization
+  selectedGenre: string = '';
+  selectedLanguage: string = '';
   isFiltered: boolean = false;
   genres: string[] = [];
   languages: string[] = [];
-  moviePosterMap: { [key: number]: string | null } = {}; // Map to store movie posters
+  moviePosterMap: { [key: number]: string | null } = {};
 
   constructor(private movieService: MovieService, private router: Router, private route: ActivatedRoute) { }
 
@@ -58,11 +57,11 @@ export class MovieFilteringPageComponent implements OnInit {
         this.movies.forEach(movie => {
           this.movieService.getMoviePoster(movie.id).subscribe(
             poster => {
-              this.moviePosterMap[movie.id] = poster; // Store the poster URL
+              this.moviePosterMap[movie.id] = poster;
             },
             error => {
               console.error('Error fetching movie poster for ID:', movie.id, error);
-              this.moviePosterMap[movie.id] = null; // Handle error
+              this.moviePosterMap[movie.id] = null;
             }
           );
         });
@@ -90,11 +89,11 @@ export class MovieFilteringPageComponent implements OnInit {
         this.movies.forEach(movie => {
           this.movieService.getMoviePoster(movie.id).subscribe(
             poster => {
-              this.moviePosterMap[movie.id] = poster; // Store the poster URL
+              this.moviePosterMap[movie.id] = poster;
             },
             error => {
               console.error('Error fetching movie poster for ID:', movie.id, error);
-              this.moviePosterMap[movie.id] = null; // Handle error
+              this.moviePosterMap[movie.id] = null;
             }
           );
         });
@@ -115,7 +114,7 @@ export class MovieFilteringPageComponent implements OnInit {
   }
 
   loadPreviousPage(): void {
-    if (this.currentPage > 1) { // Prevent going below page 1
+    if (this.currentPage > 1) { 
       this.currentPage--;
       if (this.isFiltered) {
         this.filterResults();
