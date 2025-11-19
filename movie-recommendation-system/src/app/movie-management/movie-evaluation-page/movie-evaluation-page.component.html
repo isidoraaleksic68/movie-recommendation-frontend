@@ -1,0 +1,108 @@
+<body>
+  <div class="evaluation-container">
+    <h1 class="page-title">Recommendation System Evaluation</h1>
+
+    <mat-card class="stats-card">
+      <mat-card-header>
+        <mat-icon class="card-icon">analytics</mat-icon>
+        <mat-card-title>Dataset Statistics</mat-card-title>
+      </mat-card-header>
+      <mat-card-content *ngIf="!loadingStats && datasetStats">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-label">Total Movies</span>
+            <span class="stat-value">{{ datasetStats.total_movies }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Total Genres</span>
+            <span class="stat-value">{{ datasetStats.total_genres }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Total Languages</span>
+            <span class="stat-value">{{ datasetStats.total_languages }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Average Rating</span>
+            <span class="stat-value">{{ datasetStats.rating_statistics?.average }}/10</span>
+          </div>
+        </div>
+        
+        <div class="top-genres" *ngIf="datasetStats.top_genres">
+          <h3>Top 10 Genres</h3>
+          <div class="genre-chips">
+            <mat-chip *ngFor="let genre of datasetStats.top_genres" class="genre-chip">
+              {{ genre.name }} ({{ genre.count }})
+            </mat-chip>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-spinner *ngIf="loadingStats" diameter="40"></mat-spinner>
+    </mat-card>
+
+    <mat-card class="stats-card">
+      <mat-card-header>
+        <mat-icon class="card-icon">movie_filter</mat-icon>
+        <mat-card-title>Evaluate Recommendations for Movie</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="input-form">
+          <mat-form-field appearance="outline" class="movie-input">
+            <mat-label>Movie Title</mat-label>
+            <input matInput [(ngModel)]="movieTitle" placeholder="Enter movie title" (keyup.enter)="evaluateMovie()">
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline" class="k-input">
+            <mat-label>Number of Recommendations (k)</mat-label>
+            <input matInput type="number" [(ngModel)]="k" min="1" max="100">
+          </mat-form-field>
+          
+          <div class="button-group">
+            <button mat-raised-button color="primary" (click)="evaluateMovie()" [disabled]="loadingEvaluation || !movieTitle.trim()">
+              <mat-icon>analytics</mat-icon>
+              Evaluate
+            </button>
+            <button mat-raised-button color="accent" (click)="compareMetrics()" [disabled]="loadingComparison || !movieTitle.trim()">
+              <mat-icon>compare_arrows</mat-icon>
+              Compare Metrics
+            </button>
+          </div>
+        </div>
+
+        <div class="results-section" *ngIf="evaluation && !loadingEvaluation">
+          <h3>Evaluation Results for "{{ evaluation.movie_title }}" (k={{ evaluation.k }})</h3>
+          <div class="metrics-grid">
+            <div class="metric-card" *ngFor="let key of getObjectKeys(evaluation.metrics)">
+              <span class="metric-label">{{ key }}</span>
+              <span class="metric-value">{{ evaluation.metrics[key]?.toFixed(4) }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="results-section" *ngIf="metricsComparison && !loadingComparison">
+          <h3>Metrics Comparison for "{{ metricsComparison.movie_title }}"</h3>
+          <div class="comparison-grid">
+            <mat-card *ngFor="let metric of getObjectKeys(metricsComparison.comparison)" class="metric-comparison-card">
+              <mat-card-header>
+                <mat-card-title>{{ metric }}</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="comparison-stats">
+                  <p><strong>Avg Similarity:</strong> {{ metricsComparison.comparison[metric].avg_similarity?.toFixed(4) }}</p>
+                  <p><strong>Std Similarity:</strong> {{ metricsComparison.comparison[metric].std_similarity?.toFixed(4) }}</p>
+                </div>
+                <div class="recommendations-list">
+                  <h4>Top Recommendations:</h4>
+                  <ul>
+                    <li *ngFor="let rec of metricsComparison.comparison[metric].recommendations.slice(0, 5)">{{ rec }}</li>
+                  </ul>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+
+        <mat-spinner *ngIf="loadingEvaluation || loadingComparison" diameter="40"></mat-spinner>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</body>

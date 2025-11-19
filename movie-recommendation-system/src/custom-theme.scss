@@ -1,0 +1,125 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+// Define custom color palettes
+$custom-primary: (
+  50: #efe3f5,
+  100: #d6b8e6,
+  200: #bb89d6,
+  300: #a059c5,
+  400: #8b36b8,
+  500: #4F1787,
+  600: #6d1380,
+  700: #620f75,
+  800: #570c6b,
+  900: #430658,
+  A100: #e89dff,
+  A200: #dc6aff,
+  A400: #d137ff,
+  A700: #ca1dff,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$custom-accent: (
+  50: #fceae9,
+  100: #f7cac8,
+  200: #f2a7a4,
+  300: #ed837f,
+  400: #e96963,
+  500: #C75B7A,
+  600: #e14940,
+  700: #dd3f35,
+  800: #d9362b,
+  900: #d1261b,
+  A100: #ffffff,
+  A200: #ffd3d2,
+  A400: #ffa09f,
+  A700: #ff8786,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: rgba(black, 0.87),
+    A700: rgba(black, 0.87),
+  )
+);
+
+// Create the theme palettes
+$app-primary: mat.define-palette($custom-primary, 500);
+$app-accent: mat.define-palette($custom-accent, 500);
+$app-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object
+$app-theme: mat.define-light-theme((
+  color: (
+    primary: $app-primary,
+    accent: $app-accent,
+    warn: $app-warn,
+  ),
+  typography: mat.define-typography-config(
+    $font-family: 'Inter, sans-serif',
+  ),
+  density: 0,
+));
+
+// Include theme styles for core and each component
+@include mat.all-component-themes($app-theme);
+
+// Custom global overrides
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+// Override Material component colors to match design
+.mat-mdc-raised-button.mat-accent {
+  --mdc-protected-button-container-color: #C75B7A;
+  --mdc-protected-button-label-text-color: #FFDFD6;
+}
+
+.mat-mdc-fab.mat-accent {
+  --mdc-fab-container-color: #C75B7A;
+  --mat-fab-foreground-color: #FFDFD6;
+}
+
+.mat-mdc-progress-spinner.mat-accent {
+  --mdc-circular-progress-active-indicator-color: #C75B7A;
+}
+
+// Dropdown panel background
+.mat-mdc-select-panel {
+  background-color: rgba(79, 23, 135, 0.95);
+}
+
+.mat-mdc-option {
+  color: #FFDFD6;
+}
+
+.mat-mdc-option.mat-mdc-option-active,
+.mat-mdc-option:hover {
+  background-color: rgba(199, 91, 122, 0.3);
+}

@@ -13,6 +13,7 @@ export class MovieRecommendationsComponent implements OnInit{
   movies: Movie[] = [];
   currentPage: number = 1;
   moviePosterMap: { [key: number]: string | null } = {};
+  isLoading: boolean = false;
 
   constructor(private movieService: MovieService, private router:Router, private route:ActivatedRoute) { }
 
@@ -23,6 +24,7 @@ export class MovieRecommendationsComponent implements OnInit{
 
   
   fetchMovieDetails(movieId: number): void {
+    this.isLoading = true;
     this.movieService.getMovieDetails(movieId).subscribe(
       (data) => {
         this.movie = data;
@@ -31,44 +33,59 @@ export class MovieRecommendationsComponent implements OnInit{
       },
       (error) => {
         console.error('Error fetching movie details:', error);
+        this.isLoading = false;
       }
     );
   }
 
   fetchMovies(): void {
+    this.isLoading = true;
     this.movieService.getRecommendedMovies(this.movie?.title as string, this.currentPage).subscribe(
-      (movies: Movie[]) => {
-        this.movies = movies;
+      (response: any) => {
+        this.movies = response.recommendations || response;
+        if (this.movies.length === 0) {
+          this.isLoading = false;
+          return;
+        }
+        let postersLoaded = 0;
         this.movies.forEach(movie => {
           this.movieService.getMoviePoster(movie.id).subscribe(
             poster => {
               this.moviePosterMap[movie.id] = poster;
+              postersLoaded++;
+              if (postersLoaded === this.movies.length) {
+                this.isLoading = false;
+              }
             },
             error => {
               console.error('Error fetching movie poster for ID:', movie.id, error);
               this.moviePosterMap[movie.id] = null;
+              postersLoaded++;
+              if (postersLoaded === this.movies.length) {
+                this.isLoading = false;
+              }
             }
           );
         });
       },
       (error) => {
         console.error('Failed to fetch recommended movies.', error);
+        this.isLoading = false;
       }
     );
   }
   
   
   loadNextPage(): void {
+    if (this.isLoading) return;
     this.currentPage++;
     this.fetchMovies();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   loadPreviousPage(): void {
+    if (this.isLoading || this.currentPage === 1) return;
     this.currentPage--;
-    if(this.currentPage==0){
-      return;
-    }
     this.fetchMovies();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }

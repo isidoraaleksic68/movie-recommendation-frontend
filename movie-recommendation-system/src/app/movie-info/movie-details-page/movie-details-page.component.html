@@ -1,36 +1,52 @@
 <body>
-    <div class="movie-details-container">
-        <!-- Movie Poster on the left -->
-        <img [src]="moviePosterMap[movie.id]" alt="{{movie.title}}" class="movie-poster" />
-
-        <!-- Movie Details on the right -->
-        <div class="movie-info-container">
-            <div class="movie-title-container">
-                <h1 class="movie-title">{{ movie.title }}</h1>
-                <div class="movie-details">
-                    <span class="release-year-duration">
-                        {{ getReleaseYear(movie.release_date) }} - {{ getFormattedRuntime(movie.runtime) }}
-                      </span>
-                    <span class="movie-rating" *ngIf="movie?.vote_count!=0">{{ movie.vote_average }}/10</span>
-                </div>
-
-                <!-- Keywords -->
-                <div class="keywords-container">
-                    <div class="keyword" *ngFor="let genre of movie?.genres">{{genre.name.toLowerCase()}}</div>
-                    <div class="keyword" *ngFor="let keyword of movie?.keywords">{{keyword.name}}</div>
-                </div>
-
-                <!-- Overview -->
-                <div class="overview-container">
-                    <p class="overview">{{ movie.overview }}</p>
-                </div>
+    <mat-card class="movie-details-card">
+        <div class="movie-details-container">
+            <div class="movie-poster-container">
+                <img [src]="moviePosterMap[movie.id]" alt="{{movie.title}}" class="movie-poster" />
             </div>
-        </div>
-    </div>
 
-    <!-- More Like This Button and Media/Trailers (Centered) -->
-    <div class="center-container">
-        <button class="more-like-this" (click)="viewRecommendations()">More like this</button>
+            <mat-card-content class="movie-info-container">
+                <div class="movie-title-container">
+                    <h1 class="movie-title">{{ movie.title }}</h1>
+                    <div class="movie-details">
+                        <span class="release-year-duration">
+                            {{ getReleaseYear(movie.release_date) }} - {{ getFormattedRuntime(movie.runtime) }}
+                        </span>
+                        <span class="movie-rating" *ngIf="movie.vote_count!=0">
+                            <mat-icon>star</mat-icon>
+                            {{ movie.vote_average }}/10
+                        </span>
+                    </div>
+
+                    <mat-chip-listbox class="keywords-container">
+                        <mat-chip *ngFor="let genre of movie.genres" class="genre-chip">
+                            {{genre.name.toLowerCase()}}
+                        </mat-chip>
+                        <mat-chip *ngFor="let keyword of movie.keywords" class="keyword-chip">
+                            {{keyword.name}}
+                        </mat-chip>
+                    </mat-chip-listbox>
+
+                    <div class="overview-container">
+                        <h3 class="section-title">Overview</h3>
+                        <p class="overview">{{ movie.overview }}</p>
+                    </div>
+
+                    <button 
+                        mat-raised-button 
+                        color="primary" 
+                        class="more-like-this" 
+                        (click)="viewRecommendations()"
+                    >
+                        <mat-icon>recommend</mat-icon>
+                        More like this
+                    </button>
+                </div>
+            </mat-card-content>
+        </div>
+    </mat-card>
+
+    <div class="media-section">
         <app-media-and-trailers-view id="media-and-trailers-container"></app-media-and-trailers-view>
     </div>
 </body>

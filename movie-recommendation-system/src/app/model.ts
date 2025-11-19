@@ -35,7 +35,7 @@ export interface Genre {
     popularity: number;
     production_companies: ProductionCompany[];
     production_countries: ProductionCountry[];
-    release_date: string; // Use Date type if you want to handle it as a Date object
+    release_date: string;
     revenue: number;
     runtime: number;
     spoken_languages: SpokenLanguage[];
@@ -44,6 +44,6 @@ export interface Genre {
     title: string;
     vote_average: number;
     vote_count: number;
-    poster_path?: string; // Add this for image URL
+    poster_path?: string;
   }
   

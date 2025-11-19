@@ -10,8 +10,7 @@ import { MovieService } from 'src/app/movie-management/movie.service';
 })
 export class MovieDetailsPageComponent implements OnInit{
   movie!: Movie;
-  
-  moviePosterMap: { [key: number]: string | null } = {}; // Map to store movie posters
+  moviePosterMap: { [key: number]: string | null } = {};
 
   constructor(private movieService: MovieService, private route: ActivatedRoute, private router:Router) { }
 
@@ -27,11 +26,11 @@ export class MovieDetailsPageComponent implements OnInit{
         console.log('Movie details:', this.movie);
         this.movieService.getMoviePoster(this.movie.id).subscribe(
             poster => {
-              this.moviePosterMap[this.movie.id] = poster; // Store the poster URL
+              this.moviePosterMap[this.movie.id] = poster;
             },
             error => {
               console.error('Error fetching movie poster for ID:', this.movie.id, error);
-              this.moviePosterMap[this.movie.id] = null; // Handle error
+              this.moviePosterMap[this.movie.id] = null;
             }
           );
       },

@@ -1,0 +1,90 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 12px 24px;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 8px 20px;
+  border-radius: 50px;
+}
+
+.logo-section:hover {
+  background-color: rgba(255, 223, 214, 0.1);
+  transform: scale(1.05);
+}
+
+.logo-icon {
+  font-size: 36px;
+  width: 36px;
+  height: 36px;
+  color: #FFDFD6;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: 700;
+  white-space: nowrap;
+  color: #FFDFD6;
+  letter-spacing: 0.5px;
+}
+
+.eval-button {
+  color: #FFDFD6 !important;
+}
+
+.eval-button mat-icon {
+  color: #FFDFD6;
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+}
+
+.active-link {
+  background-color: rgba(255, 223, 214, 0.15) !important;
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .logo-text {
+    font-size: 20px;
+  }
+
+  .logo-icon {
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .navbar-container {
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-text {
+    font-size: 18px;
+  }
+
+  .logo-icon {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+  }
+}

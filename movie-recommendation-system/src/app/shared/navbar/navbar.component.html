@@ -1,0 +1,12 @@
+<mat-toolbar color="primary" class="navbar">
+  <div class="navbar-container">
+    <div class="logo-section" (click)="navigateToHome()">
+      <mat-icon class="logo-icon">movie</mat-icon>
+      <span class="logo-text">MovieRecommender</span>
+    </div>
+    
+    <button mat-icon-button routerLink="/home/evaluation" routerLinkActive="active-link" class="eval-button" title="Evaluation">
+      <mat-icon>analytics</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

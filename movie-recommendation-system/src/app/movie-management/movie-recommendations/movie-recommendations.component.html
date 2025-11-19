@@ -3,24 +3,42 @@
     <div class="header">
       <h1 class="header-title">Movies similar to {{movie?.title}}</h1>
       <div class="button-container">
-        <button class="button" (click)="goToFiltering()">filter results</button>
-        <button class="button" (click)="goToSorting()">sort results</button>
+        <button mat-raised-button color="accent" (click)="goToFiltering()">
+          <mat-icon>filter_list</mat-icon>
+          Filter Results
+        </button>
+        <button mat-raised-button color="accent" (click)="goToSorting()">
+          <mat-icon>sort</mat-icon>
+          Sort Results
+        </button>
       </div>
     </div>
 
-    <div class="movie-grid">
-      <div *ngFor="let movie of movies" class="movie-card" (click)="goToDetails(movie.id)">
-        <img [src]="moviePosterMap[movie.id]" alt="{{movie.title}}" />
-      </div>
+    <div *ngIf="isLoading" class="loading-container">
+      <mat-spinner color="accent"></mat-spinner>
     </div>
-    
+
+    <div *ngIf="!isLoading && movies.length > 0" class="movie-grid">
+      <mat-card *ngFor="let movie of movies" class="movie-card" (click)="goToDetails(movie.id)">
+        <img mat-card-image [src]="moviePosterMap[movie.id]" alt="{{movie.title}}" />
+        <div class="movie-overlay">
+          <span class="movie-title-overlay">{{movie.title}}</span>
+        </div>
+      </mat-card>
+    </div>
+
+    <div *ngIf="!isLoading && movies.length === 0" class="no-results">
+      <mat-icon>movie_filter</mat-icon>
+      <p>No similar movies found.</p>
+    </div>
   </div>
   
-  <div class="button-container">
-    <button mat-fab class="load_more_button" (click)="loadPreviousPage()">
+  <div class="button-container" *ngIf="!isLoading && movies.length > 0">
+    <button mat-fab color="accent" class="load_more_button" (click)="loadPreviousPage()" [disabled]="currentPage === 1">
       <mat-icon>navigate_before</mat-icon>
     </button>
-    <button mat-fab class="load_more_button" (click)="loadNextPage()">
+    <span class="page-number">Page {{currentPage}}</span>
+    <button mat-fab color="accent" class="load_more_button" (click)="loadNextPage()">
       <mat-icon>navigate_next</mat-icon>
     </button>
   </div>

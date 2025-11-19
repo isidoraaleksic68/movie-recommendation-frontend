@@ -1,38 +1,79 @@
 <body>
     <div class="page-container">
         <div class="header">
-            <div class="sorting-container">
-                <div class="sort-title">Sort by</div>
+            <h1 class="sort-title">Sort Movies</h1>
+            <div class="sorting-controls">
                 <form [formGroup]="sortForm">
-                    <div class="checkbox-container">
-                      <mat-checkbox formControlName="popularity">Popularity</mat-checkbox>
-                      <mat-checkbox formControlName="release_date">Release Date</mat-checkbox>
-                      <mat-checkbox formControlName="revenue">Revenue</mat-checkbox>
-                      <mat-checkbox formControlName="runtime">Runtime</mat-checkbox>
-                      <mat-checkbox formControlName="vote_avarage">Vote avarage</mat-checkbox>
-                      <mat-checkbox formControlName="vote_count">Vote count</mat-checkbox>
+                    <div class="chips-container">
+                        <mat-chip-listbox class="sort-chips" multiple #chipList>
+                          <mat-chip-option value="popularity">
+                            <mat-icon>trending_up</mat-icon>
+                            Popularity
+                          </mat-chip-option>
+                          <mat-chip-option value="release_date">
+                            <mat-icon>calendar_today</mat-icon>
+                            Release Date
+                          </mat-chip-option>
+                          <mat-chip-option value="revenue">
+                            <mat-icon>attach_money</mat-icon>
+                            Revenue
+                          </mat-chip-option>
+                          <mat-chip-option value="runtime">
+                            <mat-icon>schedule</mat-icon>
+                            Runtime
+                          </mat-chip-option>
+                          <mat-chip-option value="vote_avarage">
+                            <mat-icon>star</mat-icon>
+                            Rating
+                          </mat-chip-option>
+                          <mat-chip-option value="vote_count">
+                            <mat-icon>how_to_vote</mat-icon>
+                            Vote Count
+                          </mat-chip-option>
+                        </mat-chip-listbox>
                     </div>
-                  </form>
-            </div>
-            <div class="dropdown-container">
-                <button class="button" (click)="sortResults()">sort results</button>
+                </form>
+                
+                <div class="action-buttons">
+                    <button mat-raised-button color="primary" class="sort-button" (click)="sortResults()" [disabled]="isLoading">
+                        <mat-icon>sort</mat-icon>
+                        Apply Sort
+                    </button>
+                    <button mat-stroked-button class="clear-sort-button" (click)="clearSort()" [disabled]="isLoading">
+                        <mat-icon>clear</mat-icon>
+                        Clear
+                    </button>
+                </div>
             </div>
         </div>
 
-        <div class="movie-grid">
-            <div *ngFor="let movie of movies" class="movie-card" (click)="goToDetails(movie.id)">
-                <img [src]="moviePosterMap[movie.id]" alt="{{movie.title}}" />
-            </div>
+        <div *ngIf="isLoading" class="loading-container">
+            <mat-spinner color="accent"></mat-spinner>
+        </div>
+
+        <div *ngIf="!isLoading && movies.length > 0" class="movie-grid">
+            <mat-card *ngFor="let movie of movies" class="movie-card" (click)="goToDetails(movie.id)">
+                <img mat-card-image [src]="moviePosterMap[movie.id]" alt="{{movie.title}}" />
+                <div class="movie-overlay">
+                    <span class="movie-title-overlay">{{movie.title}}</span>
+                </div>
+            </mat-card>
+        </div>
+
+        <div *ngIf="!isLoading && movies.length === 0" class="no-results">
+            <mat-icon>inbox</mat-icon>
+            <p>No movies found with selected sorting criteria.</p>
         </div>
     </div>
 
-    <div class="button-container-pagination">
-        <button mat-fab class="load_more_button" (click)="loadPreviousPage()">
+    <div class="button-container-pagination" *ngIf="!isLoading && movies.length > 0 && totalPages > 1">
+        <button mat-fab color="accent" class="load_more_button" (click)="loadPreviousPage()" *ngIf="hasPreviousPage" [disabled]="isLoading">
           <mat-icon>navigate_before</mat-icon>
         </button>
-        <button mat-fab class="load_more_button" (click)="loadNextPage()">
+        <span class="page-number">Page {{currentPage}} of {{totalPages}}</span>
+        <button mat-fab color="accent" class="load_more_button" (click)="loadNextPage()" *ngIf="hasNextPage" [disabled]="isLoading">
           <mat-icon>navigate_next</mat-icon>
         </button>
-      </div>
+    </div>
   
 </body>

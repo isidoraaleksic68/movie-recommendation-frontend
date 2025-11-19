@@ -1,159 +1,211 @@
-/* Body Styling */
+
 body {
-    background-color: #5d18a2;
+    background-color: #4F1787;
     min-height: 100vh;
     margin: 0;
-    padding: 5% 0;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    font-family: "Playfair Display", serif;
+    font-family: 'Inter', sans-serif;
     align-items: center;
 }
 
-/* Movie Details Container */
-.movie-details-container {
-    display: flex;
+
+.movie-details-card {
     max-width: 1200px;
     width: 100%;
-    padding: 5% 3%;
-    padding-bottom: 3%;
-    background-color: #4F1787;
-    border-radius: 20px 20px 0 0 ;
-    color: #FFF;
-    align-items: center; /* Aligns poster and movie info side-by-side */
-    justify-content: center;
-    /* margin-bottom: 40px; Adds spacing before the centered button and trailers */
+    background-color: rgba(255, 223, 214, 0.1);
+    border-radius: 20px;
+    margin-bottom: 30px;
+    overflow: hidden;
 }
 
-/* Movie Poster Styling */
+.movie-details-card ::ng-deep .mat-mdc-card {
+    background-color: transparent;
+}
+
+
+.movie-details-container {
+    display: flex;
+    gap: 40px;
+    padding: 40px;
+    color: #FFDFD6;
+}
+
+
+.movie-poster-container {
+    flex-shrink: 0;
+}
+
 .movie-poster {
     width: 300px;
-    height: auto;
+    height: 450px;
     border-radius: 10px;
-    margin-right: 3%;
-    max-height: 400px;
+    object-fit: cover;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
 }
 
-/* Movie Info Section */
+
 .movie-info-container {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 100%;
+    gap: 24px;
 }
 
 .movie-title {
-    font-family: "Playfair Display", serif;
-    font-size: 40px;
+    font-size: 42px;
     font-weight: 700;
-    margin: 0 0 10px 0;
+    margin: 0;
+    color: #FFDFD6;
+    line-height: 1.2;
 }
 
 .movie-details {
     display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
-    width: 100%;
-    text-align: left;
-}
-
-.release-year-duration, .movie-rating {
-    font-family: "Playfair Display", serif;
-    font-size: 20px;
-    font-weight: 700;
-}
-
-/* Keywords Grid Layout */
-.keywords-container {
-    display: grid;
     gap: 20px;
-    grid-template-columns: repeat(2, 1fr);
-    width: 100%;
-    margin: 20px 0;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-.keyword {
-    width: 100%;
-    height: 45px;
-    border-radius: 20px;
-    background: rgba(30, 30, 30, 0.4);
+.release-year-duration {
+    font-size: 18px;
+    color: rgba(255, 223, 214, 0.8);
+}
+
+.movie-rating {
     display: flex;
     align-items: center;
-    justify-content: center;
-    color: #FFF;
+    gap: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #C75B7A;
 }
 
-/* Overview Section */
+.movie-rating mat-icon {
+    color: #FFD700;
+}
+
+.keywords-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.keywords-container ::ng-deep .mat-mdc-chip {
+    background-color: rgba(199, 91, 122, 0.3);
+    color: #FFDFD6 !important;
+    font-weight: 500;
+}
+
+.keywords-container ::ng-deep .mat-mdc-chip .mdc-evolution-chip__text-label {
+    color: #FFDFD6 !important;
+}
+
+.genre-chip {
+    background-color: rgba(199, 91, 122, 0.4) !important;
+}
+
+.keyword-chip {
+    background-color: rgba(30, 30, 30, 0.4) !important;
+    color: #FFDFD6 !important;
+}
+
+
 .overview-container {
-    border-radius: 20px;
-    background: rgba(30, 30, 30, 0.23);
-    padding: 2% 5%;
-    text-align: left;
+    border-radius: 15px;
+    background: rgba(30, 30, 30, 0.3);
+    padding: 20px;
+    margin-bottom: 8px;
+}
+
+.section-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+    color: #FFDFD6;
 }
 
 .overview {
+    font-size: 16px;
+    line-height: 1.6;
     margin: 0;
-    font-family: "Playfair Display", serif;
-    font-size: 18px;
-    font-weight: 400;
+    color: rgba(255, 223, 214, 0.9);
 }
 
-/* Centered Button and Media/Trailers */
-.center-container {
-    justify-content: center;
-    display: flex;
-    max-width: 1200px;
-    width: 100%;
-    padding: 5% 3%;
-    padding-top: 0%;
-    background-color: #4F1787;
-    border-radius:  0 0 20px 20px;
-    color: #FFF;
-    align-items: center; /* Aligns poster and movie info side-by-side */
-    /* justify-content: center; */
-    flex-direction: column;
-}
 
-/* More Like This Button */
 .more-like-this {
-    height: 100px;
-    width: 80%;
-    border-radius: 20px;
-    background: rgba(30, 30, 30, 0.33);
-    color: #FFF;
-    border: none;
-    cursor: pointer;
-    font-family: "Playfair Display", serif;
-    font-size: 18px;
-    font-weight: 400;
-    transition: background-color 0.3s ease;
-}
-
-.more-like-this:hover {
-    background-color: rgba(30, 30, 30, 0.5);
-}
-
-/* Media and Trailers Container */
-#media-and-trailers-container {
-    width: 80%;
+    width: 100%;
+    max-width: 300px;
+    height: 56px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 28px;
     display: flex;
     align-items: center;
-    justify-content: center; /* Centers the media and trailers */
-    /* margin-top: 5%; */
+    justify-content: center;
+    gap: 8px;
 }
 
-/* Responsive Layout for Smaller Screens */
-@media (max-width: 768px) {
+.more-like-this mat-icon {
+    margin: 0;
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.more-like-this ::ng-deep .mat-mdc-button-persistent-ripple {
+    border-radius: 28px;
+}
+
+
+.media-section {
+    max-width: 1200px;
+    width: 100%;
+}
+
+#media-and-trailers-container {
+    width: 100%;
+}
+
+
+@media (max-width: 968px) {
     .movie-details-container {
         flex-direction: column;
         align-items: center;
+        padding: 30px 20px;
     }
 
     .movie-poster {
-        margin-bottom: 20px;
+        width: 250px;
+        height: 375px;
     }
 
-    .more-like-this {
-        width: 100%;
+    .movie-title {
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .movie-details {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .movie-poster {
+        width: 200px;
+        height: 300px;
+    }
+
+    .movie-title {
+        font-size: 26px;
+    }
+
+    .movie-details-container {
+        padding: 20px 15px;
     }
 }

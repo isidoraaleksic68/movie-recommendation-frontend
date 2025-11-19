@@ -3,26 +3,60 @@
     <h1 class="search-title">Find similar movies to your favorite ones</h1>
     
     <div class="search-bar">
-      <input type="text" [(ngModel)]="searchQuery" placeholder="Enter movie title" />
+      <input 
+        type="text" 
+        [(ngModel)]="searchQuery" 
+        placeholder="Enter movie title"
+        (keyup.enter)="searchMovies()" 
+      />
       <button class="search-icon" (click)="searchMovies()">
         <mat-icon>search</mat-icon>
       </button>
     </div>
   </div>
 
-  <h2 class="top-rated-title">🔥 Top Rated Movies </h2>
+  <div *ngIf="isLoading" class="loading-container">
+    <mat-spinner diameter="60"></mat-spinner>
+    <p class="loading-text">Loading movies...</p>
+  </div>
+
+  <h2 class="top-rated-title" *ngIf="!isLoading">
+    {{ isSearched ? 'Search Results' : '🔥 Top Rated Movies' }}
+  </h2>
   
-  <div class="movies-container" *ngIf="movies && movies.length > 0">
+  <div *ngIf="!isLoading && movies && movies.length === 0" class="no-results">
+    <mat-icon class="no-results-icon">movie_filter</mat-icon>
+    <h3>No movies found</h3>
+    <p>Try searching with a different title</p>
+  </div>
+
+  <div class="movies-container" *ngIf="!isLoading && movies && movies.length > 0">
     <div *ngFor="let movie of movies" class="movie-card" (click)="goToDetails(movie.id)">
       <img [src]="moviePosterMap[movie.id]" alt="{{movie.title}}" />
+      <div class="movie-card-overlay">
+        <h3 class="movie-card-title">{{movie.title}}</h3>
+      </div>
     </div>
   </div>
 
-  <div class="button-container">
-    <button mat-fab class="load_more_button" (click)="loadPreviousPage()" *ngIf="hasPreviousPage">
+  <div class="button-container" *ngIf="!isLoading && movies && movies.length > 0 && totalPages > 1">
+    <button 
+      mat-fab 
+      class="load_more_button" 
+      (click)="loadPreviousPage()" 
+      *ngIf="hasPreviousPage"
+      [disabled]="isLoading"
+    >
       <mat-icon>navigate_before</mat-icon>
     </button>
-    <button mat-fab class="load_more_button" (click)="loadNextPage()" *ngIf="hasNextPage">
+    <span class="page-info">Page {{currentPage}} of {{totalPages}}</span>
+    <button 
+      mat-fab 
+      class="load_more_button" 
+      (click)="loadNextPage()" 
+      *ngIf="hasNextPage"
+      [disabled]="isLoading"
+    >
       <mat-icon>navigate_next</mat-icon>
     </button>
   </div>

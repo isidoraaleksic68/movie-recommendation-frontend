@@ -33,22 +33,16 @@ export class MovieService {
     return this.http.post<Movie[]>(`${this.apiUrl}/movies/search?page=${page}`, { query });
   }
 
-  getRecommendedMovies(movieTitle: string, page: number = 1): Observable<Movie[]> {
+  getRecommendedMovies(movieTitle: string, page: number = 1): Observable<any> {
     console.log(movieTitle);
     console.log(page);
     
-    return this.http.post<{ recommendations: Movie[] }>(`${this.apiUrl}/movies/recommend?page=${page}`, { movieTitle })
-      .pipe(
-        map(response => response.recommendations) 
-      );
+    return this.http.post<any>(`${this.apiUrl}/movies/recommend?page=${page}`, { movieTitle });
   }
 
-  filterMovies(genre: string, language: string, movie_title:string, page: number): Observable<Movie[]> {
+  filterMovies(genre: string, language: string, movie_title:string, page: number): Observable<any> {
     const body = { genre, language, movie_title};
-    return this.http.post<{ filtered_movies: Movie[] }>(`${this.apiUrl}/movies/filter?page=${page}`,  body)
-      .pipe(
-        map(response => response.filtered_movies) 
-      );
+    return this.http.post<any>(`${this.apiUrl}/movies/filter?page=${page}`,  body);
   }
 
   getMetadata(): Observable<any> {
@@ -67,6 +61,18 @@ export class MovieService {
   getMovieTrailers(movieId: number): Observable<string[]> {
     return this.http.get<{ trailers: string[] }>(`${this.apiUrl}/movies/${movieId}/trailers`)
       .pipe(map(response => response.trailers));
+  }
+
+  evaluateRecommendations(movieTitle: string, k: number = 10): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/movies/evaluate`, { movieTitle, k });
+  }
+
+  compareMetrics(movieTitle: string, k: number = 10): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/movies/compare-metrics`, { movieTitle, k });
+  }
+
+  getDatasetStatistics(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/movies/statistics`);
   }
   
 }

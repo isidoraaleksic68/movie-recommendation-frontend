@@ -1,35 +1,63 @@
 <body>
     <div class="page-container">
       <div class="header">
-        <div class="button-container">
-            <select class="dropdown" [(ngModel)]="selectedGenre">
-              <option value="" hidden>Select genre</option>
-              <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
-            </select>
+        <h1 class="filter-title">Filter Movies</h1>
+        <div class="filter-controls">
+            <mat-form-field appearance="fill" class="filter-field">
+              <mat-label>Genre</mat-label>
+              <mat-select [(ngModel)]="selectedGenre">
+                <mat-option value="">All Genres</mat-option>
+                <mat-option *ngFor="let genre of genres" [value]="genre">{{ genre }}</mat-option>
+              </mat-select>
+            </mat-form-field>
             
-            <select class="dropdown" [(ngModel)]="selectedLanguage">
-              <option value="" hidden>Select spoken language</option>
-              <option *ngFor="let language of languages" [value]="language">{{ language }}</option>
-            </select>
-        </div>
-        
-        <div class="dropdown-container">
-            <button class="button" (click)="filterResults()">filter results</button>
+            <mat-form-field appearance="fill" class="filter-field">
+              <mat-label>Language</mat-label>
+              <mat-select [(ngModel)]="selectedLanguage">
+                <mat-option value="">All Languages</mat-option>
+                <mat-option *ngFor="let language of languages" [value]="language">{{ language }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <div class="button-group">
+              <button mat-raised-button color="primary" class="filter-button" (click)="filterResults()" [disabled]="isLoading">
+                <mat-icon>filter_alt</mat-icon>
+                Apply Filters
+              </button>
+              
+              <button mat-stroked-button class="clear-button" (click)="clearFilters()" [disabled]="isLoading">
+                <mat-icon>clear</mat-icon>
+                Clear
+              </button>
+            </div>
         </div>
       </div>
+
+      <div *ngIf="isLoading" class="loading-container">
+        <mat-spinner color="accent"></mat-spinner>
+      </div>
   
-      <div class="movie-grid">
-        <div *ngFor="let movie of movies" class="movie-card" (click)="goToDetails(movie.id)">
-          <img [src]="moviePosterMap[movie.id]" alt="{{movie.title}}" />
-        </div>
+      <div *ngIf="!isLoading && movies.length > 0" class="movie-grid">
+        <mat-card *ngFor="let movie of movies" class="movie-card" (click)="goToDetails(movie.id)">
+          <img mat-card-image [src]="moviePosterMap[movie.id]" alt="{{movie.title}}" />
+          <div class="movie-overlay">
+            <span class="movie-title-overlay">{{movie.title}}</span>
+          </div>
+        </mat-card>
+      </div>
+
+      <div *ngIf="!isLoading && movies.length === 0" class="no-results">
+        <mat-icon>search_off</mat-icon>
+        <p>No movies found with selected filters.</p>
       </div>
     </div>
 
-    <div class="button-container-pagination">
-      <button mat-fab class="load_more_button" (click)="loadPreviousPage()">
+    <div class="button-container-pagination" *ngIf="!isLoading && movies.length > 0 && totalPages > 1">
+      <button mat-fab color="accent" class="load_more_button" (click)="loadPreviousPage()" *ngIf="hasPreviousPage" [disabled]="isLoading">
         <mat-icon>navigate_before</mat-icon>
       </button>
-      <button mat-fab class="load_more_button" (click)="loadNextPage()">
+      <span class="page-number">Page {{currentPage}} of {{totalPages}}</span>
+      <button mat-fab color="accent" class="load_more_button" (click)="loadNextPage()" *ngIf="hasNextPage" [disabled]="isLoading">
         <mat-icon>navigate_next</mat-icon>
       </button>
     </div>

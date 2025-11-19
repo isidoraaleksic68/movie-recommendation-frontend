@@ -28,6 +28,16 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatRippleModule} from '@angular/material/core';
 
 
 @NgModule({
@@ -61,6 +71,16 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     MatRadioModule,
     MatSnackBarModule,
     MatIconModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+    MatDialogModule,
+    MatTooltipModule,
+    MatSidenavModule,
+    MatExpansionModule,
+    MatButtonToggleModule,
+    MatAutocompleteModule,
+    MatDividerModule,
+    MatRippleModule
   ],
   exports: [
     MatToolbarModule,
@@ -93,8 +113,17 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     MatCheckboxModule,
     MatRadioModule,
     MatIconModule,
-    MatIcon
-
+    MatIcon,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+    MatDialogModule,
+    MatTooltipModule,
+    MatSidenavModule,
+    MatExpansionModule,
+    MatButtonToggleModule,
+    MatAutocompleteModule,
+    MatDividerModule,
+    MatRippleModule
   ]
 })
 export class MaterialModule {
